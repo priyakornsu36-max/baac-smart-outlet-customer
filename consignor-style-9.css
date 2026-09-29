@@ -1,0 +1,239 @@
+
+/* =========================================================
+   CUSTOMER CONSIGNOR — FINAL MOBILE POLISH
+========================================================= */
+@media (max-width:1100px){
+  /* การ์ดข้อมูลผู้ฝากขายกระชับขึ้น */
+  .profile-card{
+    padding:18px 16px !important;
+  }
+
+  .profile-heading{
+    margin-bottom:12px !important;
+  }
+
+  .profile-best{
+    min-height:0 !important;
+    margin-bottom:5px !important;
+  }
+
+  .best-chip{
+    padding-bottom:7px !important;
+    font-size:20px !important;
+  }
+
+  .profile-title{
+    font-size:23px !important;
+  }
+
+  .profile-grid{
+    grid-template-columns:minmax(0,1fr) 94px !important;
+    gap:10px !important;
+  }
+
+  .avatar-wrap,
+  .avatar{
+    width:88px !important;
+    height:88px !important;
+    min-width:88px !important;
+    min-height:88px !important;
+    flex-basis:88px !important;
+  }
+
+  .detail-row{
+    grid-template-columns:92px minmax(0,1fr) !important;
+    gap:7px !important;
+    min-height:42px !important;
+  }
+
+  .detail-label{
+    font-size:10px !important;
+  }
+
+  .detail-value{
+    font-size:12px !important;
+    line-height:1.3 !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+    line-break:auto !important;
+  }
+
+  .section{
+    margin-top:24px !important;
+  }
+
+  /* สินค้าของฉัน: รูปใหญ่ขึ้น ไม่บีบ / กล่องจำนวนเล็กลง */
+  .product-card{
+    grid-template-columns:42% minmax(0,58%) !important;
+    min-height:174px !important;
+    border-radius:23px !important;
+  }
+
+  .product-photo{
+    min-height:174px !important;
+    padding:7px !important;
+    background:#fffdf8 !important;
+    border-radius:20px 0 0 20px !important;
+  }
+
+  .product-photo img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:contain !important;
+    object-position:center !important;
+    transform:none !important;
+  }
+
+  .product-content{
+    padding:13px 11px 12px !important;
+    min-width:0 !important;
+  }
+
+  .product-title{
+    font-size:15px !important;
+    line-height:1.25 !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+    line-break:auto !important;
+  }
+
+  .product-price{
+    margin-top:4px !important;
+    font-size:10px !important;
+  }
+
+  .price-strong{
+    font-size:16px !important;
+  }
+
+  .stats{
+    margin-top:11px !important;
+    gap:5px !important;
+  }
+
+  .stat{
+    padding:6px 2px !important;
+    border-radius:12px !important;
+    box-shadow:3px 3px 0 #d7ded6,inset 2px 2px 4px rgba(255,255,255,.8) !important;
+  }
+
+  .stat.sold{
+    box-shadow:3px 3px 0 #cadcf1 !important;
+  }
+
+  .stat.stock{
+    box-shadow:3px 3px 0 #bedbc4 !important;
+  }
+
+  .stat-label{
+    font-size:8px !important;
+    line-height:1.1 !important;
+  }
+
+  .stat-value{
+    margin-top:1px !important;
+    font-size:14px !important;
+  }
+
+  .status-line{
+    margin-top:10px !important;
+    font-size:10px !important;
+  }
+
+  /* การ์ดการรับเงิน: ลดความสูง + ลูกศรมุมล่างขวา */
+  .main > .section:last-child{
+    margin-top:auto !important;
+    padding-top:18px !important;
+  }
+
+  .money-actions{
+    gap:10px !important;
+  }
+
+  .action-card{
+    min-height:188px !important;
+    padding:18px 15px 42px !important;
+    border-radius:25px !important;
+  }
+
+  .action-icon{
+    width:50px !important;
+    height:50px !important;
+    border-radius:16px !important;
+    font-size:24px !important;
+  }
+
+  .action-card .arrow{
+    width:38px !important;
+    height:38px !important;
+    right:13px !important;
+    bottom:12px !important;
+    top:auto !important;
+    font-size:21px !important;
+  }
+
+  .action-label{
+    margin-top:14px !important;
+    font-size:12px !important;
+  }
+
+  .action-value{
+    margin-top:3px !important;
+    font-size:31px !important;
+    line-height:1.05 !important;
+  }
+
+  .action-desc{
+    margin-top:10px !important;
+    padding-right:0 !important;
+    font-size:10px !important;
+    line-height:1.42 !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+    line-break:auto !important;
+  }
+
+  /* Popup จ่ายแล้ว / รอรับเงิน: สูงตามเนื้อหา */
+  .modal{
+    padding:14px !important;
+  }
+
+  .modal-box{
+    width:calc(100vw - 28px) !important;
+    max-width:460px !important;
+    min-height:0 !important;
+    height:auto !important;
+    max-height:calc(100dvh - 36px) !important;
+    margin:auto !important;
+    overflow:hidden !important;
+  }
+
+  .modal-content{
+    flex:0 1 auto !important;
+    min-height:0 !important;
+    max-height:calc(100dvh - 130px) !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:16px !important;
+  }
+
+  .history-card:last-child{
+    margin-bottom:0 !important;
+  }
+
+  .history-card,
+  .history-top,
+  .proof-image-label{
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+    line-break:auto !important;
+  }
+
+  .proof-image{
+    width:auto !important;
+    max-width:100% !important;
+    height:auto !important;
+    max-height:46dvh !important;
+    object-fit:contain !important;
+  }
+}
