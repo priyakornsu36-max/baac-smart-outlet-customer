@@ -1,0 +1,986 @@
+
+
+
+    /* FC Subject Rounded จาก Google Drive ผ่าน Apps Script */
+    @font-face{
+      font-family:'FC Subject Rounded';
+      src:url("data:font/ttf;base64,") format('truetype');
+      font-style:normal;
+      font-weight:400;
+      font-display:block;
+    }
+
+    @font-face{
+      font-family:'FC Subject Rounded';
+      src:url("data:font/ttf;base64,") format('truetype');
+      font-style:normal;
+      font-weight:600 900;
+      font-display:block;
+    }
+
+    html, body, body *, body *::before, body *::after,
+    button, input, select, textarea {
+      font-family:'FC Subject Rounded', sans-serif !important;
+      font-synthesis:none;
+    }
+
+    /* ======================================================
+       RESET
+    ====================================================== */
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+
+    *{
+      font-family:'FC Subject Rounded';
+    }
+
+    :root{
+
+      --green-dark:#0d5632;
+      --green:#16854a;
+      --green-light:#dff3e5;
+
+      --cream:#f3efe4;
+      --cream-light:#fbf8ef;
+
+      --gold:#f1c35a;
+      --orange:#f39b3f;
+
+      --blue:#4c8fd8;
+
+      --text:#244332;
+      --muted:#839087;
+
+      --white:#fffdf7;
+
+      --shadow-main:
+        10px 10px 0 rgba(25,83,48,.15),
+        0 22px 45px rgba(29,75,47,.13);
+
+      --shadow-soft:
+        8px 8px 0 rgba(29,89,50,.10),
+        0 15px 35px rgba(24,75,45,.10);
+
+      --shadow-button:
+        0 8px 0 rgba(6,78,40,.30),
+        0 13px 25px rgba(18,75,42,.20);
+
+      --radius-xl:32px;
+      --radius-lg:26px;
+      --radius-md:20px;
+    }
+
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+
+    body{
+
+      min-height:100vh;
+
+      font-family:'FC Subject Rounded';
+
+      color:var(--text);
+
+      background:
+        radial-gradient(
+          circle at 15% 5%,
+          rgba(241,195,90,.20),
+          transparent 25%
+        ),
+        radial-gradient(
+          circle at 90% 35%,
+          rgba(60,167,96,.14),
+          transparent 25%
+        ),
+        linear-gradient(
+          145deg,
+          #f7f3e8,
+          #eaf3e9
+        );
+
+      overflow-x:hidden;
+    }
+
+
+    html,
+    body,
+    button,
+    input,
+    select,
+    textarea{
+      font-family:'FC Subject Rounded';
+    }
+
+    button{
+      font-family:'FC Subject Rounded';
+    }
+
+
+    /* ======================================================
+       TOP HERO
+    ====================================================== */
+
+    .hero{
+
+      position:relative;
+
+      min-height:210px;
+
+      overflow:hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0c5030 0%,
+          #116d3d 55%,
+          #17944f 100%
+        );
+
+      color:white;
+
+      border-radius:
+        0 0 46px 46px;
+
+      box-shadow:
+        0 15px 0 rgba(12,80,48,.14);
+    }
+
+
+    .hero::before{
+
+      content:"";
+
+      position:absolute;
+
+      width:260px;
+      height:260px;
+
+      right:-65px;
+      top:-90px;
+
+      border-radius:50%;
+
+      background:
+        rgba(255,255,255,.07);
+
+      box-shadow:
+        inset -25px -25px 0 rgba(255,255,255,.025);
+    }
+
+
+    .hero::after{
+
+      content:"";
+
+      position:absolute;
+
+      width:250px;
+      height:250px;
+
+      left:-120px;
+      bottom:-150px;
+
+      border-radius:50%;
+
+      background:
+        rgba(243,196,80,.13);
+    }
+
+
+    .hero-inner{
+
+      position:relative;
+      z-index:2;
+
+      width:min(1180px,100%);
+
+      margin:auto;
+
+      padding:
+        22px 22px 95px;
+    }
+
+
+    /* ======================================================
+       NAV
+    ====================================================== */
+
+    .nav{
+
+      display:flex;
+
+      justify-content:space-between;
+      align-items:center;
+
+      gap:15px;
+    }
+
+
+    .brand{
+
+      display:flex;
+      align-items:center;
+
+      gap:13px;
+    }
+
+
+    .brand-title{
+
+      font-size:28px;
+      font-weight:600;
+    }
+
+
+    .brand-sub{
+
+      margin-top:2px;
+
+      font-size:15px;
+      font-weight:300;
+
+      opacity:.77;
+    }
+
+
+    /* ======================================================
+       3D BUTTON
+    ====================================================== */
+
+    .logout{
+
+      border:none;
+
+      padding:
+        10px 18px;
+
+      border-radius:999px;
+
+      color:var(--green-dark);
+
+      background:#fffdf7;
+
+      font-size:12px;
+      font-weight:500;
+
+      cursor:pointer;
+
+      box-shadow:
+        0 7px 0 #d9e8dc,
+        0 10px 20px rgba(0,0,0,.15);
+
+      transition:
+        transform .12s ease,
+        box-shadow .12s ease;
+    }
+
+
+    .logout:hover{
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 9px 0 #d9e8dc,
+        0 14px 24px rgba(0,0,0,.16);
+    }
+
+
+    .logout:active{
+
+      transform:
+        translateY(5px);
+
+      box-shadow:
+        0 2px 0 #d9e8dc,
+        0 5px 10px rgba(0,0,0,.12);
+    }
+
+
+    /* ======================================================
+       HERO COPY
+    ====================================================== */
+
+
+    .hero-chip{
+
+      display:inline-flex;
+      align-items:center;
+
+      gap:7px;
+
+      padding:
+        7px 13px;
+
+      border-radius:999px;
+
+      color:#ffe29a;
+
+      font-size:10px;
+      font-weight:500;
+
+      background:
+        rgba(255,255,255,.12);
+
+      border:
+        1px solid rgba(255,255,255,.14);
+
+      box-shadow:
+        inset 2px 2px 6px rgba(255,255,255,.08);
+    }
+
+
+    /* ======================================================
+       MAIN
+    ====================================================== */
+
+    .main{
+
+      position:relative;
+
+      z-index:5;
+
+      width:min(1180px,100%);
+
+      margin:
+        -78px auto 0;
+
+      padding:
+        0 20px 70px;
+    }
+
+
+    /* ======================================================
+       PROFILE CARD
+    ====================================================== */
+
+    .profile-card{
+
+      position:relative;
+
+      padding:25px;
+
+      overflow:hidden;
+
+      border-radius:
+        var(--radius-xl);
+
+      background:
+        linear-gradient(
+          145deg,
+          #fffef9,
+          #f2f4ec
+        );
+
+      border:
+        3px solid rgba(255,255,255,.75);
+
+      box-shadow:
+        var(--shadow-main);
+    }
+
+
+    .profile-card::after{
+
+      content:"";
+
+      position:absolute;
+
+      width:190px;
+      height:190px;
+
+      right:-85px;
+      bottom:-95px;
+
+      border-radius:50%;
+
+      background:
+        rgba(34,160,83,.07);
+
+      box-shadow:
+        inset 12px 12px 20px rgba(255,255,255,.18);
+    }
+
+
+    .profile-heading{
+
+      position:relative;
+      z-index:2;
+
+      margin-bottom:18px;
+    }
+
+
+    .profile-best{
+
+      min-height:30px;
+
+      margin-bottom:6px;
+    }
+
+
+    .best-chip{
+
+      position:relative;
+
+      display:inline-flex;
+      align-items:center;
+
+      gap:8px;
+
+      padding:
+        0 0 9px;
+
+      color:#b47a0b;
+
+      font-size:24px;
+      font-weight:700;
+
+      background:none;
+      border:none;
+      border-radius:0;
+
+      text-shadow:
+        0 2px 0 rgba(255,255,255,.85),
+        0 5px 12px rgba(180,122,11,.18);
+    }
+
+
+    .best-chip::after{
+
+      content:'';
+
+      position:absolute;
+      left:0;
+      bottom:0;
+
+      width:100%;
+      height:3px;
+
+      border-radius:999px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #b47a0b,
+          #f1c35a,
+          rgba(241,195,90,0)
+        );
+
+      box-shadow:
+        0 3px 8px rgba(180,122,11,.16);
+    }
+
+
+    .profile-title{
+
+      color:var(--green-dark);
+
+      font-size:
+        clamp(22px,3vw,28px);
+
+      font-weight:600;
+    }
+
+
+    .profile-grid{
+
+      position:relative;
+
+      z-index:2;
+
+      display:grid;
+
+      grid-template-columns:
+        minmax(0,1fr) 210px;
+
+      gap:42px;
+
+      align-items:center;
+    }
+
+
+    .seller-details{
+
+      min-width:0;
+    }
+
+
+    .detail-row{
+
+      display:grid;
+
+      grid-template-columns:
+        165px minmax(0,1fr);
+
+      gap:24px;
+
+      align-items:center;
+
+      min-height:48px;
+
+      border-bottom:
+        1px solid #dfe7de;
+    }
+
+
+    .detail-row:last-child{
+
+      border-bottom:none;
+    }
+
+
+    .detail-label{
+
+      color:#8b978f;
+
+      font-size:14px;
+    }
+
+
+    .detail-value{
+
+      color:#274835;
+
+      font-size:14px;
+      font-weight:600;
+
+      overflow-wrap:anywhere;
+    }
+
+
+    .profile-avatar-side{
+
+      display:flex;
+
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+
+
+    .avatar-wrap{
+
+      position:relative;
+
+      width:132px;
+      height:132px;
+    }
+
+
+    .avatar{
+
+      width:132px;
+      height:132px;
+
+      display:flex;
+
+      justify-content:center;
+      align-items:center;
+
+      border-radius:50%;
+
+      font-size:54px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #e5f6e8,
+          #d8f0df
+        );
+
+      border:
+        7px solid #bce6ca;
+
+      color:var(--green-dark);
+
+      box-shadow:
+        8px 8px 0 #cbdccd,
+        0 18px 30px rgba(22,84,48,.13),
+        inset 6px 6px 10px rgba(255,255,255,.65);
+    }
+
+
+    .online-dot{
+
+      position:absolute;
+
+      right:0;
+      bottom:5px;
+
+      width:31px;
+      height:31px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      border:
+        5px solid #fff;
+
+      border-radius:50%;
+
+      background:#1b9c57;
+
+      color:white;
+
+      font-size:16px;
+      font-weight:700;
+
+      box-shadow:
+        0 4px 0 rgba(25,95,49,.18);
+    }
+
+
+    .avatar-caption{
+
+      margin-top:12px;
+
+      color:#8b978f;
+
+      font-size:12px;
+    }
+
+
+    /* ======================================================
+       SECTION
+    ====================================================== */
+
+    .section{
+
+      margin-top:37px;
+    }
+
+
+    .section-head{
+
+      display:flex;
+
+      justify-content:space-between;
+      align-items:flex-end;
+
+      gap:12px;
+
+      padding:
+        0 4px;
+
+      margin-bottom:17px;
+    }
+
+
+    .section-kicker{
+
+      color:
+        var(--green);
+
+      font-size:11px;
+      font-weight:700;
+
+      letter-spacing:1.1px;
+    }
+
+
+    .section-title{
+
+      margin-top:3px;
+
+      color:#153f29;
+
+      font-size:
+        clamp(22px,3vw,28px);
+
+      font-weight:600;
+    }
+
+
+    .section-sub{
+
+      margin-top:3px;
+
+      color:#8b978f;
+
+      font-size:12px;
+    }
+
+
+    .count-pill{
+
+      padding:
+        8px 13px;
+
+      white-space:nowrap;
+
+      border-radius:999px;
+
+      background:
+        #e3f2e5;
+
+      color:
+        var(--green-dark);
+
+      font-size:10px;
+      font-weight:600;
+
+      box-shadow:
+        0 5px 0 #c6ddc9;
+    }
+
+
+    /* ======================================================
+       PRODUCT CARDS - 3D CLAY
+    ====================================================== */
+
+    .products-grid{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+      gap:22px;
+    }
+
+
+    .product-card{
+
+      position:relative;
+
+      display:grid;
+
+      grid-template-columns:
+        205px 1fr;
+
+      min-height:230px;
+
+      overflow:hidden;
+
+      border-radius:
+        30px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #fffefa,
+          #edf2ea
+        );
+
+      border:
+        3px solid rgba(255,255,255,.86);
+
+      box-shadow:
+        9px 9px 0 #cedbcf,
+        0 22px 40px rgba(32,80,49,.12);
+
+      transition:
+        transform .18s ease,
+        box-shadow .18s ease;
+    }
+
+
+    .product-card:hover{
+
+      transform:
+        translateY(-6px);
+
+      box-shadow:
+        12px 15px 0 #c8d7ca,
+        0 28px 50px rgba(32,80,49,.16);
+    }
+
+
+    .product-photo{
+
+      position:relative;
+
+      overflow:hidden;
+
+      min-height:230px;
+
+      display:flex;
+
+      align-items:center;
+      justify-content:center;
+
+      background:
+        linear-gradient(
+          145deg,
+          #e8f4e9,
+          #fbf2d8
+        );
+
+      border-radius:
+        26px 0 0 26px;
+
+      box-shadow:
+        inset -7px 0 12px rgba(28,86,48,.07);
+    }
+
+
+    .product-photo img{
+
+      width:100%;
+      height:100%;
+
+      object-fit:cover;
+
+      transition:
+        transform .3s ease;
+    }
+
+
+    .product-card:hover
+    .product-photo img{
+
+      transform:
+        scale(1.04);
+    }
+
+
+    .product-placeholder{
+
+      font-size:68px;
+
+      filter:
+        drop-shadow(
+          0 8px 2px rgba(0,0,0,.10)
+        );
+    }
+
+
+    .product-code{
+
+      position:absolute;
+
+      top:14px;
+      left:14px;
+
+      z-index:3;
+
+      padding:
+        6px 10px;
+
+      border-radius:999px;
+
+      background:
+        rgba(255,255,255,.92);
+
+      color:#5f7467;
+
+      font-size:9px;
+      font-weight:600;
+
+      box-shadow:
+        0 5px 0 rgba(176,193,179,.75);
+    }
+
+
+    .product-content{
+
+      padding:
+        22px 20px 18px;
+    }
+
+
+    .product-title{
+
+      color:
+        #17482d;
+
+      font-size:
+        clamp(18px,2.4vw,23px);
+
+      font-weight:600;
+
+      line-height:1.25;
+    }
+
+
+    .product-price{
+
+      margin-top:5px;
+
+      color:#768279;
+
+      font-size:13px;
+    }
+
+
+    .price-strong{
+
+      color:
+        var(--green-dark);
+
+      font-size:18px;
+      font-weight:400;
+    }
+
+
+    /* ======================================================
+       PRODUCT STATS
+    ====================================================== */
+
+    .stats{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:9px;
+
+      margin-top:22px;
+    }
+
+
+    .stat{
+
+      padding:
+        11px 6px;
+
+      text-align:center;
+
+      border-radius:16px;
+
+      background:
+        #f1f3ee;
+
+      box-shadow:
+        4px 4px 0 #d7ded6,
+        inset 2px 2px 4px rgba(255,255,255,.8);
+    }
+
+
+    .stat.sold{
+
+      background:
+        #e9f2ff;
+
+      box-shadow:
+        4px 4px 0 #cadcf1;
+    }
+
+
+    .stat.stock{
+
+      background:
+        #e1f4e5;
+
+      box-shadow:
+        4px 4px 0 #bedbc4;
+    }
+
+
+    .stat-label{
+
+      color:#87938b;
+
+      font-size:11px;
+    }
