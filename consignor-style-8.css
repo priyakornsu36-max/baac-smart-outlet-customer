@@ -1,0 +1,131 @@
+
+html,
+body{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow-x:hidden !important;
+  -webkit-text-size-adjust:100% !important;
+  text-size-adjust:100% !important;
+}
+
+@media (max-width:1100px){
+  .hero-inner,
+  .main{
+    width:calc(100vw - 24px) !important;
+    max-width:480px !important;
+    min-width:0 !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .main{
+    min-height:calc(100svh - 185px) !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+    padding-bottom:max(14px,env(safe-area-inset-bottom)) !important;
+    display:flex !important;
+    flex-direction:column !important;
+  }
+
+  /* คงหน้าข้อมูลผู้ฝากขายให้เป็น mobile portrait โดยไม่เปลี่ยนรูปแบบหลัก */
+  .profile-grid{
+    grid-template-columns:minmax(0,1fr) 112px !important;
+    gap:14px !important;
+  }
+
+  .profile-avatar-side{
+    order:initial !important;
+  }
+
+  .avatar-wrap,
+  .avatar{
+    width:104px !important;
+    height:104px !important;
+    min-width:104px !important;
+    min-height:104px !important;
+    flex-basis:104px !important;
+  }
+
+  .detail-row{
+    grid-template-columns:96px minmax(0,1fr) !important;
+    gap:8px !important;
+  }
+
+  .products-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  /* รูปที่ 7 — ส่วนการรับเงินลงด้านล่างของหน้าจอเมื่อเนื้อหาด้านบนสั้น */
+  .main > .section:last-child{
+    margin-top:auto !important;
+    padding-top:24px !important;
+  }
+
+  .money-actions{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:12px !important;
+  }
+
+  .action-card{
+    position:relative !important;
+    min-width:0 !important;
+    min-height:175px !important;
+    padding-bottom:48px !important;
+  }
+
+  /* ลูกศรในการ์ด จ่ายแล้ว/รอรับเงิน ลงด้านล่างสุด */
+  .action-card .arrow{
+    position:absolute !important;
+    right:16px !important;
+    bottom:14px !important;
+    top:auto !important;
+    margin:0 !important;
+  }
+
+  .action-desc{
+    padding-right:8px !important;
+  }
+
+  /* รูปที่ 8/9 — popup จ่ายแล้ว / รอรับเงิน ขยายตามจอมือถือ */
+  .modal{
+    padding:14px !important;
+    align-items:center !important;
+    justify-content:center !important;
+  }
+
+  .modal-box{
+    width:calc(100vw - 28px) !important;
+    max-width:460px !important;
+    min-width:0 !important;
+    height:min(72dvh,660px) !important;
+    max-height:calc(100dvh - 56px) !important;
+    margin:auto !important;
+    display:flex !important;
+    flex-direction:column !important;
+    overflow:hidden !important;
+    border-radius:24px !important;
+  }
+
+  .modal-head{
+    flex:0 0 auto !important;
+  }
+
+  .modal-content{
+    flex:1 1 auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    overflow-y:auto !important;
+    padding-bottom:max(14px,env(safe-area-inset-bottom)) !important;
+  }
+
+  .history-card{
+    width:100% !important;
+  }
+
+  .proof-image{
+    width:auto !important;
+    max-width:100% !important;
+    max-height:46dvh !important;
+  }
+}
