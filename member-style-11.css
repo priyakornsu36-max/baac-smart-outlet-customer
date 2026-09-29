@@ -1,0 +1,33 @@
+
+@media (max-width:1100px){
+
+  /* ข้อมูลสมาชิก: เอากรอบการ์ดออก เหลือเฉพาะหัวข้อ/ข้อมูลและรูปสมาชิก */
+  .member-info-card{
+    margin-top:24px !important;
+    padding:0 4px !important;
+    background:transparent !important;
+    border:0 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+  }
+
+  .member-info-card::before,
+  .member-info-card::after{
+    display:none !important;
+  }
+
+  .member-info-card .card-title{
+    margin:0 0 8px !important;
+    padding:0 !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+  }
+
+  .member-info-card .member-grid{
+    padding:0 !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+  }
+}
