@@ -120,56 +120,100 @@
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  async function recoverRegistrationResult(action, args, originalError) {
-    if (String(action || '') !== 'registerCustomerMember') {
-      throw originalError;
-    }
+  async function verifyRegisteredMember(data) {
+    const phone = String((data && data.phone) || '').replace(/\D/g, '').trim();
+    if (phone.length !== 10) return null;
 
+    try {
+      const check = await callApiJsonp('loginCustomer', [phone]);
+      if (check && check.success && check.memberId) {
+        return {
+          success: true,
+          memberId: check.memberId,
+          memberName:
+            (String(data.firstName || '').trim() + ' ' +
+             String(data.lastName || '').trim()).trim(),
+          phone: phone,
+          message: 'สมัครสมาชิกเรียบร้อย'
+        };
+      }
+    } catch (_) {}
+
+    return null;
+  }
+
+  async function registerCustomerFast(args) {
     const data = args && args[0] ? args[0] : {};
     const phone = String(data.phone || '').replace(/\D/g, '').trim();
 
     if (phone.length !== 10) {
-      throw originalError;
+      return callApiPost('registerCustomerMember', args);
     }
 
-    // Apps Script HTML POST responses can be wrapped in an extra Google iframe.
-    // On some iPhone/Safari sessions the registration is saved correctly,
-    // but the postMessage response never reaches the PWA. Verify by logging in
-    // with the same phone before showing an error.
-    const delays = [400, 1200, 2200];
+    // เช็กก่อนว่ามีสมาชิกอยู่แล้วหรือไม่ เพื่อไม่ส่งคำขอสมัครซ้ำ
+    try {
+      const existing = await callApiJsonp('loginCustomer', [phone]);
+      if (existing && existing.success && existing.memberId) {
+        return {
+          success: false,
+          alreadyMember: true,
+          memberId: existing.memberId,
+          message: 'เบอร์โทรศัพท์นี้เป็นสมาชิกอยู่แล้ว กรุณาเข้าสู่ระบบ'
+        };
+      }
+    } catch (_) {}
+
+    // เริ่ม POST แต่ไม่รอ iframe ครบ 30 วินาที
+    let postFinished = false;
+    let postResult = null;
+    let postError = null;
+
+    callApiPost('registerCustomerMember', args)
+      .then((result) => {
+        postFinished = true;
+        postResult = result;
+      })
+      .catch((error) => {
+        postFinished = true;
+        postError = error;
+      });
+
+    // ตรวจผลจาก Backend ทันทีเป็นช่วง ๆ
+    const delays = [500, 800, 1200, 1600, 2200, 3000];
 
     for (const delay of delays) {
       await wait(delay);
 
-      try {
-        const check = await callApiJsonp('loginCustomer', [phone]);
+      if (postFinished && postResult) {
+        return postResult;
+      }
 
-        if (check && check.success && check.memberId) {
-          return {
-            success: true,
-            memberId: check.memberId,
-            memberName:
-              (String(data.firstName || '').trim() + ' ' +
-               String(data.lastName || '').trim()).trim(),
-            phone: phone,
-            message: 'สมัครสมาชิกเรียบร้อย'
-          };
-        }
-      } catch (_) {}
+      const verified = await verifyRegisteredMember(data);
+      if (verified) return verified;
+
+      if (postFinished && postError) break;
     }
 
-    throw originalError;
+    // ตรวจครั้งสุดท้ายก่อนแจ้งปัญหา
+    const verified = await verifyRegisteredMember(data);
+    if (verified) return verified;
+
+    throw postError || new Error(
+      'ระบบสมัครสมาชิกใช้เวลานานกว่าปกติ กรุณาลองเข้าสู่ระบบด้วยเบอร์ที่สมัครอีกครั้ง'
+    );
   }
 
   function callApi(action, args) {
     const normalizedArgs = Array.isArray(args) ? args : [];
     const argText = JSON.stringify(normalizedArgs);
+    action = String(action || '');
 
-    if (POST_ACTIONS.has(String(action || '')) || argText.length > 1500) {
-      return callApiPost(action, normalizedArgs)
-        .catch((error) =>
-          recoverRegistrationResult(action, normalizedArgs, error)
-        );
+    if (action === 'registerCustomerMember') {
+      return registerCustomerFast(normalizedArgs);
+    }
+
+    if (POST_ACTIONS.has(action) || argText.length > 1500) {
+      return callApiPost(action, normalizedArgs);
     }
 
     return callApiJsonp(action, normalizedArgs);
