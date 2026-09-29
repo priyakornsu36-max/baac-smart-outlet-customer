@@ -1,0 +1,307 @@
+
+/* =========================================================
+   CUSTOMER MEMBER PAGE — FINAL VISUAL ADJUSTMENTS
+   27-09-2569
+   แก้เฉพาะ: HEADER / MEMBER INFO / TIER ICON POSITION
+========================================================= */
+
+/* 1) HEADER: ความกว้างเท่ากับการ์ดด้านล่าง ไม่เต็มหน้าจอ */
+.header{
+  width:100% !important;
+  max-width:none !important;
+  margin:14px 0 82px !important;
+  padding:28px 18px 48px !important;
+  border-radius:28px 28px 0 0 !important;
+  overflow:visible !important;
+  position:relative !important;
+  box-sizing:border-box !important;
+  background:
+    radial-gradient(circle at 95% 10%, rgba(255,255,255,.08) 0 58px, transparent 59px),
+    linear-gradient(180deg,#176f3f 0%,#1b7a45 100%) !important;
+  box-shadow:
+    0 7px 0 #0e5f35,
+    0 15px 24px rgba(41,69,49,.12) !important;
+}
+
+.header-brand-wrap{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:74px !important;
+  position:relative !important;
+  z-index:5 !important;
+}
+
+.header .brand{
+  margin:0 !important;
+  text-align:center !important;
+  font-size:31px !important;
+  line-height:1.08 !important;
+  font-weight:700 !important;
+  letter-spacing:.45px !important;
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  text-shadow:0 3px 0 rgba(3,72,38,.28) !important;
+}
+
+.header .subtitle{
+  margin:9px 0 0 !important;
+  text-align:center !important;
+  font-size:14px !important;
+  line-height:1.2 !important;
+  font-weight:400 !important;
+  color:#edf8f0 !important;
+}
+
+/* กันสาดตามตัวอย่าง: เหลือง / ครีม / เขียว / ครีม */
+.header-awning{
+  left:6px !important;
+  right:6px !important;
+  bottom:-58px !important;
+  height:62px !important;
+  display:grid !important;
+  grid-template-columns:repeat(8,1fr) !important;
+  filter:drop-shadow(0 10px 8px rgba(52,67,49,.15)) !important;
+}
+
+.header-awning::before{
+  top:0 !important;
+  height:7px !important;
+  background:#f5f0cf !important;
+}
+
+.header-awning span{
+  height:62px !important;
+  border-radius:0 0 34px 34px !important;
+  box-shadow:inset 0 5px 0 rgba(255,255,255,.20) !important;
+}
+
+.header-awning span:nth-child(1),
+.header-awning span:nth-child(5),
+.header-awning span:nth-child(7){
+  background:#f2c552 !important;
+}
+
+.header-awning span:nth-child(2),
+.header-awning span:nth-child(4),
+.header-awning span:nth-child(6),
+.header-awning span:nth-child(8){
+  background:#fbf2bd !important;
+}
+
+.header-awning span:nth-child(3){
+  background:#2f9258 !important;
+}
+
+/* 2) การ์ดข้อมูลสมาชิก: เพิ่มพื้นที่กลับขึ้นให้พอดี */
+.member-info-card{
+  margin-top:18px !important;
+  padding:20px 22px 18px !important;
+  min-height:192px !important;
+  border-radius:22px !important;
+  box-sizing:border-box !important;
+}
+
+.member-info-card .card-title{
+  margin-bottom:12px !important;
+  font-size:20px !important;
+  line-height:1.15 !important;
+}
+
+/* 3) ขยับกลุ่มข้อมูลเข้ามาด้านขวา และลดช่องว่างตรงกลาง */
+.member-info-card .member-grid{
+  grid-template-columns:minmax(0,1fr) 132px !important;
+  gap:10px !important;
+  align-items:center !important;
+}
+
+.member-info-card .member-grid > :first-child{
+  padding-left:22px !important;
+  padding-right:4px !important;
+}
+
+.member-info-card .info-row{
+  grid-template-columns:108px minmax(0,1fr) !important;
+  gap:10px !important;
+  padding:8px 0 !important;
+}
+
+.member-info-card .info-label{
+  font-size:12px !important;
+  line-height:1.25 !important;
+}
+
+.member-info-card .info-value{
+  font-size:13px !important;
+  line-height:1.25 !important;
+}
+
+/* รูปสมาชิกด้านขวาใหญ่ขึ้น */
+.member-info-card .profile-outer{
+  width:108px !important;
+  height:108px !important;
+  padding:5px !important;
+}
+
+.member-info-card .profile-inner{
+  width:100% !important;
+  height:100% !important;
+}
+
+.member-info-card .member-photo{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+}
+
+.member-info-card .profile-svg{
+  width:54px !important;
+  height:54px !important;
+}
+
+.member-info-card .verified{
+  width:27px !important;
+  height:27px !important;
+  right:0 !important;
+  bottom:6px !important;
+  font-size:10px !important;
+}
+
+.member-info-card .photo-hint{
+  margin-top:7px !important;
+  font-size:10px !important;
+}
+
+.member-info-card .photo-action{
+  margin-top:6px !important;
+}
+
+.member-info-card .photo-button{
+  padding:5px 10px !important;
+  font-size:10px !important;
+}
+
+/* 4) ขยับไอคอนระดับสมาชิกลงเล็กน้อย
+      ให้ป้าย "ระดับปัจจุบัน" ไม่ซ้อนมงกุฎ */
+.tier-emblem.tier-emblem-img{
+  position:relative !important;
+  top:9px !important;
+  margin-bottom:9px !important;
+}
+
+/* คงความคมชัดของ PNG */
+.tier-emblem.tier-emblem-img{
+  object-fit:contain !important;
+  image-rendering:auto !important;
+  filter:none !important;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:650px){
+  .header{
+    margin:10px 0 68px !important;
+    padding:20px 12px 36px !important;
+    border-radius:22px 22px 0 0 !important;
+  }
+
+  .header-brand-wrap{
+    min-height:60px !important;
+  }
+
+  .header .brand{
+    font-size:23px !important;
+  }
+
+  .header .subtitle{
+    margin-top:6px !important;
+    font-size:11px !important;
+  }
+
+  .header-awning{
+    left:4px !important;
+    right:4px !important;
+    bottom:-46px !important;
+    height:50px !important;
+  }
+
+  .header-awning::before{
+    height:5px !important;
+  }
+
+  .header-awning span{
+    height:50px !important;
+    border-radius:0 0 25px 25px !important;
+  }
+
+  .member-info-card{
+    padding:16px 13px 14px !important;
+    min-height:158px !important;
+  }
+
+  .member-info-card .card-title{
+    margin-bottom:8px !important;
+    font-size:17px !important;
+  }
+
+  .member-info-card .member-grid{
+    grid-template-columns:minmax(0,1fr) 96px !important;
+    gap:5px !important;
+  }
+
+  .member-info-card .member-grid > :first-child{
+    padding-left:14px !important;
+    padding-right:0 !important;
+  }
+
+  .member-info-card .info-row{
+    grid-template-columns:76px minmax(0,1fr) !important;
+    gap:5px !important;
+    padding:6px 0 !important;
+  }
+
+  .member-info-card .info-label{
+    font-size:9px !important;
+  }
+
+  .member-info-card .info-value{
+    font-size:10px !important;
+  }
+
+  .member-info-card .profile-outer{
+    width:84px !important;
+    height:84px !important;
+    padding:4px !important;
+  }
+
+  .member-info-card .profile-svg{
+    width:42px !important;
+    height:42px !important;
+  }
+
+  .member-info-card .verified{
+    width:22px !important;
+    height:22px !important;
+    bottom:4px !important;
+    font-size:8px !important;
+  }
+
+  .member-info-card .photo-hint{
+    margin-top:5px !important;
+    font-size:8px !important;
+  }
+
+  .member-info-card .photo-action{
+    margin-top:4px !important;
+  }
+
+  .member-info-card .photo-button{
+    padding:4px 8px !important;
+    font-size:9px !important;
+  }
+
+  .tier-emblem.tier-emblem-img{
+    top:8px !important;
+    margin-bottom:8px !important;
+  }
+}
