@@ -1,0 +1,143 @@
+
+html,
+body{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow-x:hidden !important;
+  -webkit-text-size-adjust:100% !important;
+  text-size-adjust:100% !important;
+}
+
+@media (max-width:1100px){
+  .page{
+    width:100% !important;
+    min-height:100svh !important;
+    overflow-x:hidden !important;
+  }
+
+  .shop-header-inner,
+  .container{
+    width:calc(100vw - 20px) !important;
+    max-width:480px !important;
+    min-width:0 !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .container{
+    padding-left:4px !important;
+    padding-right:4px !important;
+  }
+
+  /* Top 3 ยังคงเป็น 3 การ์ดในแถวเดียว */
+  .best-grid{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:7px !important;
+  }
+
+  .best-card{
+    min-width:0 !important;
+    min-height:82px !important;
+    padding:9px 8px !important;
+  }
+
+  /* รูปที่ 5 — สินค้าที่มีจำหน่าย แถวละ 3 การ์ด */
+  .product-grid{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:8px !important;
+  }
+
+  .product-card{
+    width:100% !important;
+    min-width:0 !important;
+    border-radius:16px !important;
+    overflow:hidden !important;
+  }
+
+  .product-image{
+    height:108px !important;
+  }
+
+  .category-badge{
+    left:6px !important;
+    top:6px !important;
+    max-width:calc(100% - 12px) !important;
+    padding:3px 6px !important;
+    font-size:8px !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+  }
+
+  .product-body{
+    padding:9px 8px 10px !important;
+  }
+
+  .product-name{
+    min-height:34px !important;
+    font-size:13px !important;
+    line-height:1.25 !important;
+    overflow-wrap:anywhere !important;
+  }
+
+  .price-row{
+    margin-top:5px !important;
+    gap:2px !important;
+    align-items:flex-end !important;
+  }
+
+  .price{
+    font-size:22px !important;
+    line-height:1 !important;
+  }
+
+  .baht{
+    margin-bottom:1px !important;
+    font-size:8px !important;
+    line-height:1.15 !important;
+  }
+
+  .stock-line{
+    margin-top:8px !important;
+    padding-top:7px !important;
+    gap:2px !important;
+  }
+
+  .stock-label{
+    font-size:8px !important;
+  }
+
+  .stock-value{
+    font-size:9px !important;
+  }
+
+  .footer{
+    padding-bottom:max(10px,env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* จอมือถือแคบมากยังคง 3 การ์ด แต่ลดรูปและตัวอักษรอีกเล็กน้อย */
+@media (max-width:380px){
+  .product-grid{
+    gap:6px !important;
+  }
+
+  .product-image{
+    height:96px !important;
+  }
+
+  .product-body{
+    padding:8px 6px 9px !important;
+  }
+
+  .product-name{
+    font-size:12px !important;
+  }
+
+  .price{
+    font-size:20px !important;
+  }
+}
