@@ -1,0 +1,38 @@
+
+/* =========================================================
+   FIT-ONLY FINAL — Products
+   คงดีไซน์เดิม / โทรศัพท์แสดง 2 คอลัมน์
+========================================================= */
+@media (max-width:600px){
+  .product-grid{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+  }
+
+  .product-card{
+    min-width:0 !important;
+    width:100% !important;
+  }
+
+  .product-image{
+    height:155px !important;
+  }
+
+  .product-name{
+    font-size:16px !important;
+    line-height:1.3 !important;
+  }
+
+  .price{
+    font-size:28px !important;
+  }
+
+  .stock-label{
+    font-size:10px !important;
+  }
+
+  .stock-value{
+    font-size:12px !important;
+  }
+}
