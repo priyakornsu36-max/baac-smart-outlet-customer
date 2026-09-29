@@ -1,0 +1,98 @@
+
+@media (max-width:1100px){
+
+  /* ส่วนหัว: ลดความสูงให้พอดีกับข้อความ และเป็นสี่เหลี่ยม */
+  .header{
+    min-height:0 !important;
+    height:auto !important;
+    margin:0 0 14px calc(50% - 50vw) !important;
+    padding:16px 20px !important;
+    border-radius:0 !important;
+    box-shadow:0 6px 0 rgba(12,80,48,.12) !important;
+  }
+
+  .member-header-nav{
+    min-height:0 !important;
+    align-items:center !important;
+  }
+
+  .header-brand-wrap{
+    min-height:0 !important;
+    height:auto !important;
+  }
+
+  .header .brand{
+    font-size:23px !important;
+    line-height:1.05 !important;
+  }
+
+  .header .subtitle{
+    margin-top:4px !important;
+    font-size:13px !important;
+    line-height:1.1 !important;
+  }
+
+  .header .member-logout-btn{
+    padding:8px 13px !important;
+    box-shadow:0 4px 0 #d9e8dc,0 7px 14px rgba(0,0,0,.11) !important;
+  }
+
+  /* การ์ดสิทธิ์รางวัล: ลดความสูงโดยให้ Silver / Gold อยู่ข้างกัน */
+  .reward.reward-status-card{
+    align-items:center !important;
+    gap:10px !important;
+    margin-top:11px !important;
+    padding:12px 13px !important;
+    border-radius:16px !important;
+  }
+
+  .reward-status-card .reward-icon{
+    width:38px !important;
+    height:38px !important;
+    border-radius:12px !important;
+    font-size:18px !important;
+  }
+
+  .reward-status-card .reward-title{
+    font-size:14px !important;
+    line-height:1.15 !important;
+  }
+
+  .reward-status-card .reward-text{
+    margin-top:1px !important;
+    font-size:10px !important;
+    line-height:1.25 !important;
+  }
+
+  .reward-status-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:6px !important;
+    margin-top:8px !important;
+  }
+
+  .reward-level-row{
+    min-width:0 !important;
+    gap:5px !important;
+    padding:7px 7px !important;
+    border-radius:11px !important;
+  }
+
+  .reward-level-name{
+    font-size:13px !important;
+    line-height:1 !important;
+  }
+
+  .reward-level-condition{
+    margin-top:2px !important;
+    font-size:8px !important;
+    line-height:1.15 !important;
+  }
+
+  .reward-state{
+    max-width:64px !important;
+    padding:5px 6px !important;
+    font-size:8px !important;
+    line-height:1.1 !important;
+    white-space:normal !important;
+  }
+}
