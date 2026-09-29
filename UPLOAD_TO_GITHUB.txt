@@ -1,0 +1,26 @@
+BAAC SMART OUTLET CUSTOMER PWA
+Repository: priyakornsu36-max/baac-smart-outlet-customer
+Branch: main
+
+อัปโหลดไฟล์ทั้งหมดต่อไปนี้ไว้ที่ Root ของ Repository (ไม่ต้องสร้างโฟลเดอร์เพิ่ม):
+1. index.html
+2. member.html
+3. products.html
+4. consignor.html
+5. app.js
+6. manifest.webmanifest
+7. sw.js
+8. icon-192.png
+9. icon-512.png
+10. README.md
+
+หลังอัปโหลด:
+GitHub Repository > Settings > Pages > Build and deployment > Source: Deploy from a branch > Branch: main > /(root) > Save
+
+PWA URL ที่คาดว่าจะได้:
+https://priyakornsu36-max.github.io/baac-smart-outlet-customer/
+
+Backend:
+https://script.google.com/macros/s/AKfycbzha4xvn3ha9ek0VweZYFubQrJ6-_Qeb3G2PHMWGHv5Tej6YCMjUzQMEmq6FWdeTQfo/exec
+
+หมายเหตุ: ชุดนี้เป็น CUSTOMER PWA เท่านั้น ไม่รวม STAFF/POS
