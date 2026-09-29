@@ -1,0 +1,58 @@
+
+/* =========================================================
+   FIT-ONLY FINAL — Consignor
+   ไม่เปลี่ยน layout เดิม / popup ทุกตัวอยู่กลางและไม่เต็มจอ
+========================================================= */
+.modal,
+.image-lightbox{
+  align-items:center !important;
+  justify-content:center !important;
+}
+
+@media (max-width:600px){
+  .modal{
+    padding:14px !important;
+  }
+
+  .modal-box{
+    width:min(90vw,420px) !important;
+    max-width:420px !important;
+    max-height:82dvh !important;
+    margin:auto !important;
+    overflow:hidden !important;
+  }
+
+  .modal-content{
+    max-height:64dvh !important;
+    overflow-y:auto !important;
+  }
+
+  .proof-image{
+    width:auto !important;
+    max-width:min(100%,320px) !important;
+    max-height:46dvh !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .payment-notification{
+    width:min(92vw,460px) !important;
+    max-width:460px !important;
+    left:50% !important;
+    right:auto !important;
+    transform:translateX(-50%) !important;
+  }
+
+  .payment-notification-text{
+    font-size:13px !important;
+    line-height:1.4 !important;
+  }
+}
+
+@media (min-width:601px) and (max-width:1100px){
+  .modal-box{
+    width:min(66vw,560px) !important;
+    max-width:560px !important;
+    margin:auto !important;
+  }
+}
