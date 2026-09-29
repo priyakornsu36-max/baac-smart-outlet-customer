@@ -1,0 +1,499 @@
+
+    @font-face{
+      font-family:'FC Subject Rounded';
+      src:url(data:font/ttf;base64,) format('truetype');
+      font-weight:400;
+      font-style:normal;
+    }
+    @font-face{
+      font-family:'FC Subject Rounded';
+      src:url(data:font/ttf;base64,) format('truetype');
+      font-weight:700;
+      font-style:normal;
+    }
+
+    :root{
+      --green:#137b45;
+      --green-dark:#075f35;
+      --cream:#fbf8ef;
+      --soft-green:#e8f0e8;
+      --text:#234031;
+      --muted:#7f8f86;
+      --gold:#e9b543;
+    }
+
+    html,body,button,input,textarea,select{
+      font-family:'FC Subject Rounded',sans-serif !important;
+    }
+
+    body{
+      background:
+        radial-gradient(circle at 10% 0%,rgba(39,140,78,.14),transparent 32%),
+        radial-gradient(circle at 92% 15%,rgba(225,191,88,.12),transparent 28%),
+        linear-gradient(180deg,#f6f3e9 0%,#e9f1e8 100%) !important;
+    }
+
+    .header{margin-bottom:28px}
+    .brand{
+      font-size:32px !important;
+      font-weight:700 !important;
+      color:#0b7542 !important;
+      background:none !important;
+      -webkit-text-fill-color:initial !important;
+      text-shadow:0 3px 0 #efd58d;
+    }
+    .subtitle{font-size:16px !important;color:#667b70 !important}
+    .welcome{font-size:26px !important;color:#214c36 !important;text-shadow:0 2px 0 rgba(255,255,255,.8)}
+
+    .points-card{
+      border-radius:30px !important;
+      background:linear-gradient(145deg,#0c7a43,#168e50) !important;
+      border:1px solid rgba(4,90,48,.5) !important;
+      box-shadow:
+        0 13px 0 #075f35,
+        0 22px 34px rgba(24,73,45,.18),
+        inset 0 10px 0 rgba(255,255,255,.12) !important;
+    }
+    .points-label{font-size:16px !important;font-weight:700 !important}
+    .points-number{font-size:64px !important;text-shadow:0 4px 0 rgba(0,0,0,.14)}
+    .points-word{font-size:18px !important}
+    .progress{height:11px !important;background:rgba(255,255,255,.24) !important;box-shadow:inset 0 3px 4px rgba(0,0,0,.12)}
+    .progress-bar{background:linear-gradient(180deg,#fff6c3,#f4d067) !important;box-shadow:0 3px 0 rgba(137,95,14,.26) !important}
+
+    .reward{
+      border-radius:22px !important;
+      background:linear-gradient(145deg,#fff6c9,#f3d36c) !important;
+      border:1px solid #e2b847 !important;
+      box-shadow:0 8px 0 #d4a331,0 15px 24px rgba(94,74,24,.10),inset 0 5px 0 rgba(255,255,255,.33) !important;
+    }
+    .reward-icon{
+      border-radius:16px !important;
+      box-shadow:0 5px 0 rgba(161,121,29,.25) !important;
+    }
+    .reward-title{font-size:17px !important}.reward-text{font-size:14px !important}
+
+    .card{
+      border-radius:28px !important;
+      background:linear-gradient(145deg,#fffdf7 0%,#f4fbf5 55%,#e8f4eb 100%) !important;
+      border:1px solid rgba(174,194,180,.7) !important;
+      box-shadow:0 10px 0 #dce7dc,0 18px 30px rgba(46,75,56,.10),inset 0 5px 0 rgba(255,255,255,.9) !important;
+    }
+    .card-title{font-size:22px !important;font-weight:700 !important;color:#0e7040 !important}
+    .info-label{font-size:15px !important}.info-value{font-size:17px !important;font-weight:700 !important}
+    .profile-outer{
+      background:linear-gradient(145deg,#ffffff,#b7dec3,#ffffff) !important;
+      box-shadow:0 8px 0 #a6cdb2,0 16px 24px rgba(11,101,56,.16) !important;
+    }
+    .verified{box-shadow:0 4px 0 #075f35 !important}
+    .photo-hint{font-size:12px !important}
+
+    .level{
+      border-radius:25px !important;
+      background:linear-gradient(145deg,#fffdf7 0%,#f3f8f3 58%,#e7f1e9 100%) !important;
+      border:1px solid #cfddd2 !important;
+      box-shadow:0 7px 0 #d5e2d7,0 13px 20px rgba(41,66,49,.08),inset 0 4px 0 rgba(255,255,255,.95) !important;
+    }
+    .level.current{
+      background:linear-gradient(145deg,#f5fff6 0%,#dff4e4 55%,#cce9d4 100%) !important;
+      border:2px solid #78b88c !important;
+      box-shadow:0 8px 0 #9dc9a9,0 15px 25px rgba(21,107,57,.14),inset 0 4px 0 rgba(255,255,255,.9) !important;
+    }
+    .current-label{
+      font-size:11px !important;
+      box-shadow:0 4px 0 #075f35 !important;
+    }
+    .level-name{font-size:18px !important}.level-point{font-size:12px !important}
+
+    .menu-card{
+      border-radius:27px !important;
+      box-shadow:0 9px 0 rgba(31,91,57,.25),0 17px 26px rgba(35,70,48,.11),inset 0 6px 0 rgba(255,255,255,.15) !important;
+    }
+    .menu-products{background:linear-gradient(145deg,#0c7a43,#168e50) !important}
+    .menu-history{
+      background:linear-gradient(145deg,#f4fbff 0%,#dff4f7 48%,#cfe9e0 100%) !important;
+      border:1px solid #bdd5c3 !important;
+      box-shadow:0 9px 0 #b8d2bf,0 17px 26px rgba(35,70,48,.11),inset 0 6px 0 rgba(255,255,255,.65) !important;
+    }
+    .menu-icon{box-shadow:0 5px 0 rgba(20,91,51,.22) !important}
+    .menu-title{font-size:29px !important;font-weight:700 !important}
+    .menu-sub{font-size:16px !important}.menu-arrow{box-shadow:0 4px 0 rgba(20,91,51,.22) !important}
+    .footer{font-size:12px !important}
+
+    .history-modal{background:rgba(20,45,30,.55) !important}
+    .history-box{
+      background:#f6f3e9 !important;
+      border-radius:30px !important;
+      box-shadow:0 14px 0 rgba(10,70,40,.22),0 28px 55px rgba(0,0,0,.24) !important;
+    }
+    .history-header{
+      background:linear-gradient(145deg,#0c7a43,#168e50) !important;
+      box-shadow:inset 0 6px 0 rgba(255,255,255,.13) !important;
+    }
+    .history-title{font-size:29px !important;text-shadow:0 3px 0 rgba(0,0,0,.14)}
+    .history-subtitle{font-size:14px !important}
+    .history-close{box-shadow:0 4px 0 rgba(0,0,0,.14) !important}
+
+    .history-product{font-size:20px !important}.history-price{font-size:21px !important}.history-date{font-size:13px !important}
+    .history-tag{font-size:13px !important;background:#e9f3ea !important;box-shadow:0 2px 0 #d2e0d5 !important}
+
+    @media(max-width:650px){
+      .brand{font-size:27px !important}
+      .subtitle{font-size:14px !important}
+      .welcome{font-size:23px !important}
+      .points-number{font-size:54px !important}
+      .card-title{font-size:20px !important}
+      .menu-title{font-size:27px !important}
+    }
+
+    .reward-status-card{
+      align-items:flex-start;
+    }
+
+    .reward-status-content{
+      flex:1;
+      min-width:0;
+    }
+
+    .reward-status-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      margin-top:13px;
+    }
+
+    .reward-level-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 13px;
+      border-radius:16px;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(18,126,72,.14);
+    }
+
+    .reward-level-name{
+      font-size:18px;
+      line-height:1;
+      font-weight:700;
+      color:#68757b;
+    }
+
+    .gold-text{
+      color:#a27a08;
+    }
+
+    .reward-level-condition{
+      margin-top:4px;
+      font-size:12px;
+      color:#78877e;
+    }
+
+    .reward-state{
+      flex:0 0 auto;
+      border-radius:999px;
+      padding:7px 11px;
+      font-size:12px;
+      font-weight:700;
+      text-align:center;
+    }
+
+    .reward-state.locked{
+      background:#f0f2f1;
+      color:#7e8a83;
+    }
+
+    .reward-state.ready{
+      background:#fff0bf;
+      color:#806000;
+      border:1px solid #ead27b;
+    }
+
+    .reward-state.done{
+      background:#dff3e6;
+      color:#08783f;
+      border:1px solid #bfe2cb;
+    }
+
+    @media(max-width:650px){
+      .reward-status-grid{
+        grid-template-columns:1fr;
+      }
+
+      .reward-level-row{
+        padding:11px 12px;
+      }
+    }
+
+    .member-top-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:14px;
+    }
+
+    .member-top-row .welcome{
+      margin:0;
+    }
+
+    .card-title-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:2px;
+    }
+
+    .member-logout-btn{
+      appearance:none;
+      border:1.5px solid #dfb5ad;
+      background:#fff8f6;
+      color:#9d4337;
+      border-radius:14px;
+      padding:8px 14px;
+      font-family:'Kanit',sans-serif;
+      font-size:14px;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow:0 3px 0 #efd6d1;
+      transition:transform .12s ease,box-shadow .12s ease,background .12s ease;
+    }
+
+    .member-logout-btn:hover{
+      background:#fff1ee;
+    }
+
+    .member-logout-btn:active{
+      transform:translateY(2px);
+      box-shadow:0 1px 0 #efd6d1;
+    }
+
+    @media(max-width:650px){
+      .member-top-row{
+        align-items:center;
+        gap:10px;
+        margin-bottom:12px;
+      }
+
+      .member-top-row .welcome{
+        flex:1 1 auto;
+      }
+
+      .member-logout-btn{
+        padding:7px 11px;
+        font-size:13px;
+      }
+    }
+
+    /* =========================================================
+       CUSTOMER MEMBER PAGE — HEADER / COMPACT INFO / TIER PNG
+       แก้เฉพาะหน้าข้อมูลลูกค้า
+    ========================================================= */
+
+    .header{
+      position:relative !important;
+      width:100vw !important;
+      margin:-28px calc(50% - 50vw) 78px !important;
+      padding:35px 20px 72px !important;
+      text-align:center !important;
+      overflow:visible !important;
+      background:
+        linear-gradient(
+          180deg,
+          #2d8c58 0 6px,
+          #237f4e 6px 12px,
+          #167b45 12px 100%
+        ) !important;
+      box-shadow:none !important;
+    }
+
+    .header-brand-wrap{
+      position:relative;
+      z-index:3;
+    }
+
+    .header .brand{
+      margin:0 !important;
+      font-size:34px !important;
+      line-height:1.06 !important;
+      font-weight:700 !important;
+      letter-spacing:.5px !important;
+      color:#ffffff !important;
+      background:none !important;
+      -webkit-background-clip:initial !important;
+      -webkit-text-fill-color:#ffffff !important;
+      text-shadow:0 4px 0 rgba(4,82,43,.28) !important;
+    }
+
+    .header .subtitle{
+      margin-top:12px !important;
+      font-size:16px !important;
+      line-height:1.2 !important;
+      font-weight:400 !important;
+      color:#e8f5ec !important;
+      text-shadow:0 2px 0 rgba(4,82,43,.20) !important;
+    }
+
+    .header-awning{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-55px;
+      height:60px;
+      z-index:4;
+      display:grid;
+      grid-template-columns:repeat(8,minmax(0,1fr));
+      filter:drop-shadow(0 12px 9px rgba(61,72,54,.16));
+      pointer-events:none;
+    }
+
+    .header-awning::before{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:0;
+      height:7px;
+      background:#e9f4e7;
+      z-index:5;
+    }
+
+    .header-awning span{
+      position:relative;
+      height:60px;
+      border-radius:0 0 32px 32px;
+      box-shadow:inset 0 5px 0 rgba(255,255,255,.18);
+    }
+
+    .header-awning span:nth-child(odd){
+      background:#cbead3;
+    }
+
+    .header-awning span:nth-child(even){
+      background:#ffffff;
+    }
+
+    /* การ์ดข้อมูลสมาชิกให้กระชับและเตี้ยลง */
+    .member-info-card{
+      margin-top:17px !important;
+      padding:16px 20px 14px !important;
+      border-radius:22px !important;
+    }
+
+    .member-info-card .card-title{
+      margin-bottom:7px !important;
+      font-size:19px !important;
+      line-height:1.15 !important;
+    }
+
+    .member-info-card .member-grid{
+      grid-template-columns:minmax(0,1fr) 118px !important;
+      gap:18px !important;
+      align-items:center !important;
+    }
+
+    .member-info-card .info-row{
+      grid-template-columns:126px minmax(0,1fr) !important;
+      gap:8px !important;
+      padding:6px 0 !important;
+    }
+
+    .member-info-card .info-label{
+      font-size:12px !important;
+      line-height:1.25 !important;
+    }
+
+    .member-info-card .info-value{
+      font-size:13px !important;
+      line-height:1.25 !important;
+    }
+
+    .member-info-card .profile-area{
+      order:initial !important;
+    }
+
+    .member-info-card .profile-outer{
+      width:92px !important;
+      height:92px !important;
+      padding:4px !important;
+      box-shadow:
+        0 5px 0 #a6cdb2,
+        0 10px 18px rgba(11,101,56,.13) !important;
+    }
+
+    .member-info-card .profile-svg{
+      width:44px !important;
+      height:44px !important;
+    }
+
+    .member-info-card .verified{
+      right:1px !important;
+      bottom:5px !important;
+      width:25px !important;
+      height:25px !important;
+      border-width:3px !important;
+      font-size:9px !important;
+      box-shadow:0 3px 0 #075f35 !important;
+    }
+
+    .member-info-card .photo-hint{
+      margin-top:5px !important;
+      font-size:9px !important;
+      line-height:1 !important;
+    }
+
+    .member-info-card .photo-action{
+      margin-top:5px !important;
+    }
+
+    .member-info-card .photo-button{
+      padding:4px 9px !important;
+      font-size:10px !important;
+      line-height:1.1 !important;
+      box-shadow:0 2px 0 #d3e5d8 !important;
+    }
+
+    .member-info-card .photo-status{
+      min-height:0 !important;
+      margin-top:3px !important;
+      font-size:9px !important;
+      line-height:1.1 !important;
+    }
+
+    /* ใช้ PNG ต้นฉบับโดยตรง ไม่ยืด/บีบภาพ เพื่อคงความคมชัด */
+    .tier-emblem.tier-emblem-img{
+      width:116px !important;
+      height:116px !important;
+      margin:0 auto 1px !important;
+      display:block !important;
+      object-fit:contain !important;
+      transform:none !important;
+      filter:none !important;
+      image-rendering:auto !important;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .level{
+      min-height:204px !important;
+      padding-top:13px !important;
+      padding-bottom:14px !important;
+    }
+
+    .tier-label-area{
+      height:24px !important;
+    }
+
+    .level-name{
+      margin-top:0 !important;
+    }
+
+    @media(max-width:650px){
+      .header{
+        margin:-18px calc(50% - 50vw) 65px !important;
+        padding:26px 14px 54px !important;
+      }
+
+      .header .brand{
+        font-size:27px !important;
+      }
