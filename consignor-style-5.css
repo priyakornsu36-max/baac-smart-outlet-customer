@@ -1,0 +1,66 @@
+
+/* =========================================================
+   CONSIGNOR AVATAR — FINAL FIX
+   ใช้ background-image แทน <img> เพื่อหลีกเลี่ยงการถูก clip
+========================================================= */
+.profile-avatar-side{
+  position:relative !important;
+  z-index:4 !important;
+}
+
+.avatar-wrap{
+  position:relative !important;
+  width:190px !important;
+  height:190px !important;
+  min-width:190px !important;
+  min-height:190px !important;
+  flex:0 0 190px !important;
+  overflow:visible !important;
+}
+
+.avatar{
+  display:block !important;
+  width:190px !important;
+  height:190px !important;
+  min-width:190px !important;
+  min-height:190px !important;
+  padding:0 !important;
+  margin:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  overflow:visible !important;
+  box-shadow:none !important;
+
+  background-color:transparent !important;
+  background-image:url("consignor-avatar.svg") !important;
+  background-repeat:no-repeat !important;
+  background-position:center center !important;
+  background-size:contain !important;
+}
+
+.consignor-avatar-img{
+  display:none !important;
+}
+
+.online-dot{
+  z-index:6 !important;
+  right:7px !important;
+  bottom:9px !important;
+}
+
+@media(max-width:680px){
+  .avatar-wrap{
+    width:150px !important;
+    height:150px !important;
+    min-width:150px !important;
+    min-height:150px !important;
+    flex-basis:150px !important;
+  }
+
+  .avatar{
+    width:150px !important;
+    height:150px !important;
+    min-width:150px !important;
+    min-height:150px !important;
+  }
+}
