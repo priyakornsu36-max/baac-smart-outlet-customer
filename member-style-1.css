@@ -1,0 +1,634 @@
+
+        *{box-sizing:border-box}
+
+        :root{
+          --green:#137b45;
+          --green-dark:#075f35;
+          --text:#26382d;
+          --muted:#89938c;
+          --line:#e7eee9;
+        }
+
+        body{
+          margin:0;
+          font-family:'Kanit',sans-serif;
+          color:var(--text);
+          background:
+            radial-gradient(circle at 10% 0%,rgba(49,166,97,.13),transparent 32%),
+            radial-gradient(circle at 90% 15%,rgba(184,225,198,.25),transparent 28%),
+            linear-gradient(180deg,#fafcf9 0%,#f1f7f3 100%);
+        }
+
+        .page{
+          min-height:100vh;
+          padding:28px 18px 45px;
+        }
+
+        .container{
+          width:100%;
+          max-width:920px;
+          margin:auto;
+        }
+
+        /* HEADER */
+
+        .header{
+          text-align:center;
+          margin-bottom:25px;
+        }
+
+        .brand{
+          font-size:30px;
+          font-weight:700;
+          letter-spacing:.4px;
+          background:linear-gradient(90deg,#075d34,#1b9253);
+          -webkit-background-clip:text;
+          -webkit-text-fill-color:transparent;
+        }
+
+        .subtitle{
+          margin-top:3px;
+          font-size:14px;
+          font-weight:300;
+          color:#8a958e;
+        }
+
+        .welcome{
+          margin:0 0 14px 3px;
+          font-size:22px;
+          font-weight:600;
+        }
+
+        /* POINT CARD */
+
+        .points-card{
+          position:relative;
+          overflow:hidden;
+          padding:29px 30px;
+          border-radius:28px;
+          color:white;
+          background:
+            linear-gradient(
+              135deg,
+              #075f35 0%,
+              #0f7d45 50%,
+              #36a764 100%
+            );
+          box-shadow:
+            0 22px 48px rgba(9,99,54,.19),
+            inset 0 1px 0 rgba(255,255,255,.2);
+        }
+
+        .points-card::before{
+          content:"";
+          position:absolute;
+          width:270px;
+          height:270px;
+          right:-85px;
+          top:-155px;
+          border-radius:50%;
+          background:
+            radial-gradient(
+              circle,
+              rgba(255,255,255,.18),
+              transparent 68%
+            );
+        }
+
+        .points-content{
+          position:relative;
+          z-index:2;
+        }
+
+        .points-label{
+          font-size:14px;
+          font-weight:300;
+          opacity:.9;
+        }
+
+        .points-row{
+          display:flex;
+          align-items:flex-end;
+          gap:9px;
+          margin-top:4px;
+        }
+
+        .points-number{
+          font-size:58px;
+          line-height:1;
+          font-weight:700;
+        }
+
+        .points-word{
+          margin-bottom:7px;
+          font-size:16px;
+          font-weight:300;
+        }
+
+        .progress-info{
+          display:flex;
+          justify-content:space-between;
+          gap:15px;
+          margin:22px 0 8px;
+          font-size:12px;
+          opacity:.92;
+        }
+
+        .progress{
+          height:8px;
+          border-radius:999px;
+          overflow:hidden;
+          background:rgba(255,255,255,.21);
+        }
+
+        .progress-bar{
+          width:0%;
+          height:100%;
+          border-radius:999px;
+          background:linear-gradient(90deg,#fff,#d7ffe5);
+          box-shadow:0 0 16px rgba(255,255,255,.45);
+          transition:width .5s ease;
+        }
+
+        /* REWARD */
+
+        .reward{
+          display:flex;
+          align-items:center;
+          gap:13px;
+          margin-top:16px;
+          padding:16px 18px;
+          border-radius:19px;
+          background:linear-gradient(110deg,#fff9e3,#fff2b8);
+          border:1px solid rgba(225,194,81,.30);
+          box-shadow:0 10px 25px rgba(97,78,17,.055);
+        }
+
+        .reward-icon{
+          width:44px;
+          height:44px;
+          flex:none;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          border-radius:14px;
+          background:white;
+          font-size:21px;
+          box-shadow:0 6px 15px rgba(91,72,14,.08);
+        }
+
+        .reward-title{
+          font-size:14px;
+          font-weight:600;
+          color:#685313;
+        }
+
+        .reward-text{
+          margin-top:2px;
+          font-size:12px;
+          font-weight:300;
+          color:#89732d;
+        }
+
+        /* CARD */
+
+        .card{
+          margin-top:19px;
+          padding:25px;
+          border-radius:25px;
+          background:rgba(255,255,255,.94);
+          border:1px solid rgba(228,236,230,.95);
+          box-shadow:0 14px 36px rgba(38,65,47,.065);
+        }
+
+        .card-title{
+          margin-bottom:19px;
+          font-size:18px;
+          font-weight:600;
+          color:#116c3d;
+        }
+
+        /* MEMBER INFO */
+
+        .member-grid{
+          display:grid;
+          grid-template-columns:1fr 185px;
+          align-items:center;
+          gap:30px;
+        }
+
+        .info-row{
+          display:grid;
+          grid-template-columns:145px 1fr;
+          gap:12px;
+          padding:11px 0;
+          border-bottom:1px solid var(--line);
+        }
+
+        .info-row:last-child{
+          border-bottom:none;
+        }
+
+        .info-label{
+          font-size:13px;
+          font-weight:300;
+          color:#89938c;
+        }
+
+        .info-value{
+          font-size:14px;
+          font-weight:500;
+        }
+
+        /* PROFILE */
+
+        .profile-area{
+          display:flex;
+          justify-content:center;
+        }
+
+        .profile-box{
+          position:relative;
+        }
+
+        .profile-outer{
+          width:148px;
+          height:148px;
+          padding:6px;
+          border-radius:50%;
+          background:
+            linear-gradient(
+              145deg,
+              #ffffff,
+              #9bd6ae,
+              #ffffff
+            );
+          box-shadow:0 16px 34px rgba(11,101,56,.15);
+        }
+
+        .profile-inner{
+          width:100%;
+          height:100%;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          border-radius:50%;
+          background:
+            radial-gradient(
+              circle at 35% 25%,
+              #f7fff9,
+              #dff4e5 56%,
+              #c3e8cf 100%
+            );
+        }
+
+        .profile-svg{
+          width:77px;
+          height:77px;
+        }
+
+        .member-photo{
+          width:100%;
+          height:100%;
+          display:none;
+          object-fit:cover;
+          border-radius:50%;
+          background:#eef7f0;
+        }
+
+        .photo-action{
+          display:flex;
+          justify-content:center;
+          margin-top:10px;
+        }
+
+        .photo-button{
+          appearance:none;
+          border:1px solid #b9d7c2;
+          border-radius:999px;
+          padding:7px 13px;
+          background:linear-gradient(145deg,#ffffff,#e9f5ec);
+          color:#0e7040;
+          font-family:inherit;
+          font-size:12px;
+          font-weight:700;
+          cursor:pointer;
+          box-shadow:0 4px 0 #d3e5d8;
+          transition:.16s ease;
+        }
+
+        .photo-button:hover{
+          transform:translateY(-1px);
+        }
+
+        .photo-button:active{
+          transform:translateY(2px);
+          box-shadow:0 2px 0 #d3e5d8;
+        }
+
+        .photo-button:disabled{
+          opacity:.65;
+          cursor:wait;
+          transform:none;
+        }
+
+        .photo-input{
+          display:none;
+        }
+
+        .photo-status{
+          min-height:18px;
+          margin-top:7px;
+          text-align:center;
+          font-size:11px;
+          color:#7f8e84;
+        }
+
+        .photo-status.success{
+          color:#118149;
+        }
+
+        .photo-status.error{
+          color:#c23a32;
+        }
+
+        .verified{
+          position:absolute;
+          right:6px;
+          bottom:9px;
+          width:33px;
+          height:33px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          border-radius:50%;
+          border:4px solid white;
+          background:linear-gradient(145deg,#31ad69,#08703e);
+          color:white;
+          font-size:12px;
+          font-weight:700;
+        }
+
+        .photo-hint{
+          margin-top:10px;
+          text-align:center;
+          font-size:10px;
+          color:#97a198;
+        }
+
+        /* MEMBER LEVEL */
+
+        .levels{
+          display:grid;
+          grid-template-columns:repeat(3,1fr);
+          gap:15px;
+        }
+
+        .level{
+          position:relative;
+          min-height:225px;
+          padding:17px 10px 18px;
+          text-align:center;
+          border-radius:24px;
+          background:linear-gradient(180deg,#ffffff,#f8faf9);
+          border:1px solid #e5ece7;
+          transition:.22s ease;
+        }
+
+        .level:hover{
+          transform:translateY(-3px);
+        }
+
+        .level.current{
+          border:1px solid #acd5ba;
+          background:linear-gradient(180deg,#fbfefc,#edf7f0);
+          box-shadow:0 13px 30px rgba(21,107,57,.11);
+        }
+
+        .tier-label-area{
+          height:23px;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+        }
+
+        .current-label{
+          display:none;
+          align-items:center;
+          justify-content:center;
+          min-height:23px;
+          padding:4px 12px;
+          border-radius:999px;
+          background:linear-gradient(135deg,#08703e,#209759);
+          color:white;
+          font-size:9px;
+          font-weight:500;
+          box-shadow:0 5px 13px rgba(15,122,67,.17);
+        }
+
+        .level.current .current-label{
+          display:inline-flex;
+        }
+
+        .tier-emblem{
+          width:132px;
+          height:116px;
+          margin:6px auto 2px;
+          display:block;
+          transform:scaleY(.90);
+          transform-origin:center center;
+          filter:drop-shadow(0 8px 8px rgba(30,45,35,.11));
+        }
+
+        .level-name{
+          margin-top:4px;
+          font-size:15px;
+          font-weight:600;
+          color:#314037;
+        }
+
+        .level-point{
+          margin-top:3px;
+          font-size:10px;
+          font-weight:300;
+          color:#919b94;
+        }
+
+        /* NAVIGATION */
+
+        .menu{
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          gap:16px;
+          margin-top:21px;
+        }
+
+        .menu-card{
+          position:relative;
+          overflow:hidden;
+          min-height:155px;
+          padding:23px 24px;
+          border:none;
+          border-radius:25px;
+          font-family:'Kanit',sans-serif;
+          text-align:left;
+          cursor:pointer;
+          transition:.22s ease;
+        }
+
+        .menu-card:hover{
+          transform:translateY(-4px) scale(1.008);
+        }
+
+        .menu-products{
+          color:white;
+          background:
+            linear-gradient(
+              135deg,
+              #075f35,
+              #118147 54%,
+              #28a25e
+            );
+          box-shadow:0 17px 34px rgba(10,105,57,.18);
+        }
+
+        .menu-products::before{
+          content:"";
+          position:absolute;
+          width:170px;
+          height:170px;
+          right:-70px;
+          top:-80px;
+          border-radius:50%;
+          background:
+            radial-gradient(
+              circle,
+              rgba(255,255,255,.18),
+              transparent
+            );
+        }
+
+        .menu-history{
+          color:#165f39;
+          background:linear-gradient(135deg,#ffffff,#edf7f0);
+          border:1px solid #d4e6da;
+          box-shadow:0 15px 30px rgba(37,74,50,.08);
+        }
+
+        .menu-icon{
+          width:50px;
+          height:50px;
+          position:relative;
+          z-index:2;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          margin-bottom:13px;
+          border-radius:16px;
+        }
+
+        .menu-products .menu-icon{
+          background:rgba(255,255,255,.15);
+          border:1px solid rgba(255,255,255,.16);
+        }
+
+        .menu-history .menu-icon{
+          background:linear-gradient(145deg,#e7f5eb,#d4ebdc);
+        }
+
+        .menu-icon svg{
+          width:27px;
+          height:27px;
+        }
+
+        .menu-title{
+          position:relative;
+          z-index:2;
+          font-size:26px;
+          line-height:1.2;
+          font-weight:600;
+        }
+
+        .menu-sub{
+          position:relative;
+          z-index:2;
+          margin-top:7px;
+          font-size:14px;
+          font-weight:300;
+          opacity:.84;
+        }
+
+        .menu-arrow{
+          position:absolute;
+          right:22px;
+          bottom:22px;
+          z-index:2;
+          width:41px;
+          height:41px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          border-radius:50%;
+          font-size:21px;
+        }
+
+        .menu-products .menu-arrow{
+          color:white;
+          background:rgba(255,255,255,.15);
+        }
+
+        .menu-history .menu-arrow{
+          color:#157947;
+          background:#dcefe2;
+        }
+
+        .footer{
+          margin-top:28px;
+          text-align:center;
+          font-size:10px;
+          color:#9aa49d;
+        }
+
+        @media(max-width:650px){
+
+          .page{
+            padding:18px 12px 35px;
+          }
+
+          .brand{
+            font-size:24px;
+          }
+
+          .points-card{
+            padding:23px 20px;
+          }
+
+          .points-number{
+            font-size:49px;
+          }
+
+          .progress-info{
+            flex-direction:column;
+            gap:3px;
+          }
+
+          .member-grid{
+            grid-template-columns:1fr;
+          }
+
+          .profile-area{
+            order:-1;
+          }
+
+          .info-row{
+            grid-template-columns:1fr;
+            gap:2px;
+          }
+
+          .card{
+            padding:20px 12px;
+          }
+
+          .levels{
+            gap:7px;
+          }
