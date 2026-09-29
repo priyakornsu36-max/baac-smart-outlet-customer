@@ -1,0 +1,109 @@
+
+
+      .header .subtitle{
+        margin-top:7px !important;
+        font-size:13px !important;
+      }
+
+      .header-awning{
+        bottom:-43px !important;
+        height:48px !important;
+      }
+
+      .header-awning span{
+        height:48px !important;
+        border-radius:0 0 23px 23px !important;
+      }
+
+      .header-awning::before{
+        height:5px !important;
+      }
+
+      .member-info-card{
+        padding:13px 12px 11px !important;
+      }
+
+      .member-info-card .card-title{
+        margin-bottom:5px !important;
+        font-size:17px !important;
+      }
+
+      .member-info-card .member-grid{
+        grid-template-columns:minmax(0,1fr) 82px !important;
+        gap:9px !important;
+      }
+
+      .member-info-card .info-row{
+        grid-template-columns:86px minmax(0,1fr) !important;
+        gap:5px !important;
+        padding:5px 0 !important;
+      }
+
+      .member-info-card .info-label{
+        font-size:10px !important;
+      }
+
+      .member-info-card .info-value{
+        font-size:11px !important;
+      }
+
+      .member-info-card .profile-outer{
+        width:70px !important;
+        height:70px !important;
+        padding:3px !important;
+      }
+
+      .member-info-card .profile-svg{
+        width:35px !important;
+        height:35px !important;
+      }
+
+      .member-info-card .verified{
+        width:20px !important;
+        height:20px !important;
+        right:-1px !important;
+        bottom:3px !important;
+        border-width:2px !important;
+        font-size:8px !important;
+      }
+
+      .member-info-card .photo-hint{
+        margin-top:4px !important;
+        font-size:8px !important;
+      }
+
+      .member-info-card .photo-action{
+        margin-top:4px !important;
+      }
+
+      .member-info-card .photo-button{
+        padding:3px 7px !important;
+        font-size:9px !important;
+      }
+
+      .tier-emblem.tier-emblem-img{
+        width:88px !important;
+        height:88px !important;
+        margin:-1px auto 0 !important;
+      }
+
+      .level{
+        min-height:167px !important;
+        padding:10px 2px 10px !important;
+      }
+
+      .tier-label-area{
+        height:20px !important;
+      }
+
+      .level-name{
+        font-size:12px !important;
+      }
+
+      .level-point{
+        margin-top:2px !important;
+        font-size:8px !important;
+      }
+    }
+
+    
