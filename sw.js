@@ -1,4 +1,4 @@
-const CACHE_NAME = 'baac-customer-pwa-v2';
+const CACHE_NAME = 'baac-customer-pwa-v4';
 const APP_SHELL = [
   './',
   './index.html',
@@ -11,15 +11,19 @@ const APP_SHELL = [
 ];
 
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL))
+  );
   self.skipWaiting();
 });
 
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(keys => Promise.all(
-      keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
-    )).then(() => self.clients.claim())
+    caches.keys()
+      .then(keys => Promise.all(
+        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
+      ))
+      .then(() => self.clients.claim())
   );
 });
 
@@ -30,26 +34,21 @@ self.addEventListener('fetch', event => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (request.mode === 'navigate') {
-    event.respondWith(
-      fetch(request).then(response => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
-        return response;
-      }).catch(async () => {
-        return (await caches.match(request)) || (await caches.match('./index.html'));
-      })
-    );
-    return;
-  }
-
+  // Network-first: ป้องกัน iPhone/Safari ค้างไฟล์ JS/CSS เวอร์ชันเก่า
   event.respondWith(
-    caches.match(request).then(cached => cached || fetch(request).then(response => {
-      if (response && response.ok) {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
-      }
-      return response;
-    }))
+    fetch(request)
+      .then(response => {
+        if (response && response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+        }
+        return response;
+      })
+      .catch(async () => {
+        return (await caches.match(request)) ||
+          (request.mode === 'navigate'
+            ? await caches.match('./index.html')
+            : Response.error());
+      })
   );
 });
