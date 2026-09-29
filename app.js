@@ -4,7 +4,6 @@
   const API_URL = 'https://script.google.com/macros/s/AKfycbzha4xvn3ha9ek0VweZYFubQrJ6-_Qeb3G2PHMWGHv5Tej6YCMjUzQMEmq6FWdeTQfo/exec';
   const API_TIMEOUT_MS = 30000;
   const POST_ACTIONS = new Set([
-    'registerCustomerMember',
     'updateMemberPhotoData',
     'markConsignorPaymentNotificationRead'
   ]);
@@ -147,10 +146,10 @@
     const phone = String(data.phone || '').replace(/\D/g, '').trim();
 
     if (phone.length !== 10) {
-      return callApiPost('registerCustomerMember', args);
+      return callApiJsonp('registerCustomerMember', args);
     }
 
-    // เช็กก่อนว่ามีสมาชิกอยู่แล้วหรือไม่ เพื่อไม่ส่งคำขอสมัครซ้ำ
+    // ตรวจสมาชิกเดิมก่อน เพื่อหลีกเลี่ยงการสมัครซ้ำ
     try {
       const existing = await callApiJsonp('loginCustomer', [phone]);
       if (existing && existing.success && existing.memberId) {
@@ -163,44 +162,9 @@
       }
     } catch (_) {}
 
-    // เริ่ม POST แต่ไม่รอ iframe ครบ 30 วินาที
-    let postFinished = false;
-    let postResult = null;
-    let postError = null;
-
-    callApiPost('registerCustomerMember', args)
-      .then((result) => {
-        postFinished = true;
-        postResult = result;
-      })
-      .catch((error) => {
-        postFinished = true;
-        postError = error;
-      });
-
-    // ตรวจผลจาก Backend ทันทีเป็นช่วง ๆ
-    const delays = [500, 800, 1200, 1600, 2200, 3000];
-
-    for (const delay of delays) {
-      await wait(delay);
-
-      if (postFinished && postResult) {
-        return postResult;
-      }
-
-      const verified = await verifyRegisteredMember(data);
-      if (verified) return verified;
-
-      if (postFinished && postError) break;
-    }
-
-    // ตรวจครั้งสุดท้ายก่อนแจ้งปัญหา
-    const verified = await verifyRegisteredMember(data);
-    if (verified) return verified;
-
-    throw postError || new Error(
-      'ระบบสมัครสมาชิกใช้เวลานานกว่าปกติ กรุณาลองเข้าสู่ระบบด้วยเบอร์ที่สมัครอีกครั้ง'
-    );
+    // ข้อมูลสมัครมีขนาดเล็ก ใช้ JSONP โดยตรงแทน iframe POST
+    // เพื่อให้ iPhone/Safari รับผลตอบกลับจาก Apps Script ได้แน่นอนกว่า
+    return callApiJsonp('registerCustomerMember', args);
   }
 
   function callApi(action, args) {
