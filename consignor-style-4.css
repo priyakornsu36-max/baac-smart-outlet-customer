@@ -1,0 +1,43 @@
+
+/* =========================================================
+   CUSTOMER CONSIGNOR — PAYMENT PROOF CLEAN VIEW
+   แสดงเฉพาะรูป + "แตะรูปเพื่อขยาย"
+========================================================= */
+.proof{
+  margin-top:12px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+.proof-images-grid{
+  margin:0 !important;
+  padding:0 !important;
+  background:transparent !important;
+}
+
+.proof-image-item{
+  padding:0 !important;
+  margin:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+.proof-image{
+  display:block !important;
+  margin:0 auto !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+.proof-image-label{
+  margin-top:7px !important;
+  text-align:center !important;
+  background:transparent !important;
+}
