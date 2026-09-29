@@ -1,0 +1,38 @@
+
+
+          .level{
+            min-height:190px;
+            padding:13px 2px 12px;
+          }
+
+          .tier-emblem{
+            width:94px;
+            height:84px;
+          }
+
+          .level-name{
+            font-size:11px;
+          }
+
+          .level-point{
+            font-size:8px;
+          }
+
+          .current-label{
+            font-size:7px;
+            padding:3px 7px;
+          }
+
+          .menu{
+            grid-template-columns:1fr;
+          }
+
+          .menu-title{
+            font-size:25px;
+          }
+
+          .menu-sub{
+            font-size:13px;
+          }
+        }
+      
