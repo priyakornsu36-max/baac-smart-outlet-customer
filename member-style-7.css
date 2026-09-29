@@ -1,0 +1,47 @@
+
+/* =========================================================
+   FIT-ONLY FINAL — Member
+   ไม่เปลี่ยน layout เดิม / popup อยู่กลางและขนาดพอดี
+========================================================= */
+.history-modal{
+  align-items:center !important;
+  justify-content:center !important;
+}
+
+@media (max-width:600px){
+  .history-modal{
+    padding:14px !important;
+  }
+
+  .history-box{
+    width:min(90vw,420px) !important;
+    max-width:420px !important;
+    max-height:82dvh !important;
+    margin:auto !important;
+    overflow:hidden !important;
+  }
+
+  .history-body{
+    max-height:62dvh !important;
+    overflow-y:auto !important;
+  }
+
+  .history-product{
+    font-size:16px !important;
+  }
+
+  .history-detail,
+  .history-product-row-name,
+  .history-product-row-qty,
+  .history-product-row-amount{
+    font-size:12px !important;
+  }
+}
+
+@media (min-width:601px) and (max-width:1100px){
+  .history-box{
+    width:min(68vw,560px) !important;
+    max-width:560px !important;
+    margin:auto !important;
+  }
+}
