@@ -1,0 +1,233 @@
+
+      .history-modal{
+        display:none;
+        position:fixed;
+        inset:0;
+        z-index:9999;
+        background:rgba(16,46,31,.55);
+        backdrop-filter:blur(5px);
+        padding:20px;
+        overflow-y:auto;
+      }
+
+      .history-modal.show{
+        display:flex;
+        align-items:flex-start;
+        justify-content:center;
+      }
+
+      .history-box{
+        width:100%;
+        max-width:720px;
+        margin:35px auto;
+        background:#f8fbf8;
+        border-radius:28px;
+        box-shadow:0 20px 60px rgba(0,0,0,.22);
+        overflow:hidden;
+      }
+
+      .history-header{
+        background:linear-gradient(135deg,#0d7945,#15945a);
+        padding:24px 26px;
+        color:white;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+      }
+
+      .history-title{
+        font-size:25px;
+        font-weight:700;
+      }
+
+      .history-subtitle{
+        margin-top:3px;
+        font-size:12px;
+        opacity:.85;
+      }
+
+      .history-close{
+        width:40px;
+        height:40px;
+        border:0;
+        border-radius:50%;
+        background:rgba(255,255,255,.16);
+        color:white;
+        font-size:25px;
+        cursor:pointer;
+      }
+
+      .history-body{
+        padding:22px;
+      }
+
+      
+
+      
+
+      
+
+      .history-list{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+      }
+
+      .history-item{
+        background:white;
+        border:1px solid #dce9e0;
+        border-left:5px solid #15945a;
+        border-radius:20px;
+        padding:18px 19px;
+        box-shadow:0 6px 0 #e2eee6;
+      }
+
+      .history-item-top{
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+        gap:14px;
+      }
+
+      .history-name-label{
+        font-size:11px;
+        color:#87928b;
+        margin-bottom:2px;
+      }
+
+      .history-product{
+        font-size:21px;
+        line-height:1.15;
+        font-weight:700;
+        color:#20332a;
+      }
+
+      .history-price{
+        text-align:right;
+        white-space:nowrap;
+      }
+
+      .history-price-label{
+        display:block;
+        font-size:11px;
+        color:#87928b;
+        font-weight:400;
+      }
+
+      .history-price strong{
+        display:block;
+        margin-top:1px;
+        font-size:20px;
+        color:#13804c;
+      }
+
+      .history-bill-id{
+        font-size:11px;
+        color:#87928b;
+        margin-bottom:2px;
+      }
+
+      .history-products{
+        margin-top:14px;
+        border-top:1px solid #e3ece6;
+        border-bottom:1px solid #e3ece6;
+      }
+
+      .history-product-row{
+        display:grid;
+        grid-template-columns:minmax(0,1fr) auto auto;
+        gap:10px;
+        align-items:center;
+        padding:10px 0;
+        border-bottom:1px dashed #e3ece6;
+      }
+
+      .history-product-row:last-child{
+        border-bottom:0;
+      }
+
+      .history-product-row-name{
+        min-width:0;
+        font-size:15px;
+        font-weight:700;
+        color:#20332a;
+      }
+
+      .history-product-row-qty{
+        font-size:12px;
+        color:#557064;
+        white-space:nowrap;
+      }
+
+      .history-product-row-amount{
+        font-size:14px;
+        font-weight:700;
+        color:#13804c;
+        white-space:nowrap;
+      }
+
+      .history-detail{
+        display:flex;
+        flex-wrap:wrap;
+        gap:7px;
+        margin-top:11px;
+      }
+
+      .history-tag{
+        background:#f3f7f4;
+        color:#557064;
+        border:1px solid #e2ebe5;
+        border-radius:20px;
+        padding:6px 10px;
+        font-size:12px;
+      }
+
+      .history-points-tag{
+        background:#e8f5e9;
+        color:#176b32;
+        border:1px solid #c7e6ce;
+        font-weight:900;
+      }
+
+      .history-date-tag{
+        background:#fffaf0;
+        color:#7a6a4e;
+        border-color:#eee2c8;
+      }
+
+      .history-empty{
+        display:none;
+        text-align:center;
+        padding:45px 15px;
+        color:#849087;
+      }
+
+      .history-loading{
+        text-align:center;
+        padding:45px 15px;
+        color:#6f7c73;
+      }
+
+      @media(max-width:650px){
+        .history-modal{
+          padding:10px;
+        }
+
+        .history-box{
+          margin:15px auto;
+          border-radius:22px;
+        }
+
+        .history-header{
+          padding:19px 18px;
+        }
+
+        .history-title{
+          font-size:21px;
+        }
+
+        .history-body{
+          padding:15px;
+        }
+      }
+    
