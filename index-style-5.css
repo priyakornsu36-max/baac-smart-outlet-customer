@@ -1,0 +1,160 @@
+
+/* =========================================================
+   CUSTOMER INDEX — FINAL MOBILE POLISH
+   - ลดช่องว่างหน้าแรก
+   - Login ไม่ถูกคีย์บอร์ดบัง
+   - Popup สำเร็จ/แจ้งเตือนพอดีมือถือ
+   - ไม่ตัดคำกลางคำ
+========================================================= */
+@media (max-width:1100px){
+  body{
+    justify-content:flex-start !important;
+    padding:16px 0 max(16px,env(safe-area-inset-bottom)) !important;
+  }
+
+  .container{
+    width:calc(100vw - 24px) !important;
+    max-width:480px !important;
+  }
+
+  /* หน้าแรก: เลิกบังคับความสูง 76svh ซึ่งทำให้เกิดช่องว่างมาก */
+  .card{
+    min-height:0 !important;
+    height:auto !important;
+  }
+
+  .storefront{
+    padding-top:16px !important;
+  }
+
+  .brand-area{
+    padding-top:18px !important;
+  }
+
+  .welcome-area{
+    flex:0 0 auto !important;
+    justify-content:flex-start !important;
+    padding:34px 22px 28px !important;
+  }
+
+  .welcome-text{
+    margin-bottom:17px !important;
+  }
+
+  .footer{
+    padding:8px 14px 18px !important;
+  }
+
+  /* Login: ความสูงตามเนื้อหา และเลื่อนได้เมื่อคีย์บอร์ดเปิด */
+  .modal{
+    width:100vw !important;
+    height:100dvh !important;
+    max-height:100dvh !important;
+    padding:max(10px,env(safe-area-inset-top)) 14px max(10px,env(safe-area-inset-bottom)) !important;
+    align-items:flex-start !important;
+    justify-content:center !important;
+    overflow-y:auto !important;
+    overscroll-behavior:contain;
+  }
+
+  #customerModal .modal-box,
+  #consignorModal .modal-box{
+    width:100% !important;
+    max-width:460px !important;
+    min-height:0 !important;
+    height:auto !important;
+    max-height:calc(100dvh - 20px) !important;
+    margin:auto !important;
+    padding:22px 20px !important;
+    justify-content:flex-start !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch;
+    box-sizing:border-box !important;
+  }
+
+  #customerRegisterModal .modal-box{
+    width:100% !important;
+    max-width:460px !important;
+    min-height:0 !important;
+    height:auto !important;
+    max-height:calc(100dvh - 20px) !important;
+    margin:auto !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .modal-title,
+  .notice,
+  .consignor-notice,
+  .small-note,
+  .register-question,
+  .register-btn,
+  .modal-btn,
+  .baac-popup-title,
+  .baac-popup-message,
+  .baac-popup-btn{
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+    line-break:auto !important;
+  }
+
+  /* Popup ทั่วไปสูงตามเนื้อหา ไม่ล้นจอ */
+  .baac-popup-backdrop{
+    width:100vw !important;
+    height:100dvh !important;
+    padding:14px !important;
+    align-items:center !important;
+    justify-content:center !important;
+    overflow-y:auto !important;
+  }
+
+  .baac-popup-card{
+    width:100% !important;
+    max-width:430px !important;
+    min-height:0 !important;
+    height:auto !important;
+    max-height:calc(100dvh - 28px) !important;
+    margin:auto !important;
+    overflow:hidden !important;
+    box-sizing:border-box !important;
+  }
+
+  .baac-popup-body{
+    max-height:calc(100dvh - 112px) !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch;
+  }
+}
+
+/* เมื่อคีย์บอร์ดทำให้ viewport เตี้ยมาก ให้กล่องชิดด้านบนและกระชับขึ้น */
+@media (max-width:1100px) and (max-height:720px){
+  .modal{
+    padding-top:6px !important;
+    padding-bottom:6px !important;
+  }
+
+  #customerModal .modal-box,
+  #consignorModal .modal-box{
+    margin:0 auto !important;
+    max-height:calc(100dvh - 12px) !important;
+    padding:16px 18px !important;
+  }
+
+  .modal-header{
+    margin-bottom:10px !important;
+  }
+
+  .notice,
+  .consignor-notice{
+    margin-bottom:10px !important;
+    padding:10px 12px !important;
+  }
+
+  .input-group{
+    margin-bottom:10px !important;
+  }
+
+  .small-note{
+    margin-top:9px !important;
+  }
+}
