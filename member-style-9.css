@@ -1,0 +1,193 @@
+
+/* =========================================================
+   CUSTOMER MEMBER — FINAL MOBILE POLISH
+========================================================= */
+@media (max-width:1100px){
+  /* Header รูปแบบเดียวกับหน้าผู้ฝากขาย */
+  .header{
+    width:100vw !important;
+    max-width:none !important;
+    min-height:152px !important;
+    margin:0 0 18px calc(50% - 50vw) !important;
+    padding:22px 24px 54px !important;
+    overflow:hidden !important;
+    border-radius:0 0 30px 30px !important;
+    background:
+      radial-gradient(circle at 96% 5%,rgba(255,255,255,.08) 0 72px,transparent 73px),
+      radial-gradient(circle at -4% 105%,rgba(243,196,80,.13) 0 78px,transparent 79px),
+      linear-gradient(135deg,#0c5030 0%,#116d3d 55%,#17944f 100%) !important;
+    box-shadow:0 10px 0 rgba(12,80,48,.14) !important;
+  }
+
+  .member-header-nav{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:14px !important;
+  }
+
+  .header-brand-wrap{
+    min-height:0 !important;
+    align-items:flex-start !important;
+    justify-content:center !important;
+    flex:1 1 auto !important;
+  }
+
+  .header .brand{
+    margin:0 !important;
+    text-align:left !important;
+    white-space:nowrap !important;
+    font-size:24px !important;
+    line-height:1.1 !important;
+    color:#fff !important;
+    -webkit-text-fill-color:#fff !important;
+    text-shadow:0 3px 0 rgba(3,72,38,.28) !important;
+  }
+
+  .header .subtitle{
+    margin:6px 0 0 !important;
+    text-align:left !important;
+    font-size:14px !important;
+    line-height:1.2 !important;
+    color:#edf8f0 !important;
+  }
+
+  .header-awning{
+    display:none !important;
+  }
+
+  .header .member-logout-btn{
+    flex:0 0 auto !important;
+    padding:9px 14px !important;
+    border-radius:999px !important;
+    font-size:12px !important;
+    color:#8e4036 !important;
+    background:#fffdf7 !important;
+    box-shadow:0 6px 0 #d9e8dc,0 9px 18px rgba(0,0,0,.13) !important;
+  }
+
+  .member-top-row{
+    margin:0 0 12px !important;
+  }
+
+  .member-top-row .welcome{
+    font-size:22px !important;
+    line-height:1.25 !important;
+  }
+
+  /* คะแนนสะสม: เอา "ระดับปัจจุบัน · สมาชิกทั่วไป" ออก */
+  #currentLevelText{
+    display:none !important;
+  }
+
+  .progress-info{
+    justify-content:flex-end !important;
+    margin:14px 0 8px !important;
+  }
+
+  #nextLevelText{
+    width:100% !important;
+    text-align:right !important;
+  }
+
+  .points-card{
+    padding-top:22px !important;
+    padding-bottom:20px !important;
+  }
+
+  /* ลดช่องว่างแนวตั้งส่วนหลัก */
+  .member-info-card{
+    margin-top:14px !important;
+  }
+
+  .reward{
+    margin-top:13px !important;
+  }
+
+  .card{
+    margin-top:14px !important;
+  }
+
+  /* เมนูด้านล่างสมดุลขึ้น ไม่สูงเกินไป */
+  .menu{
+    margin-top:auto !important;
+    padding-top:16px !important;
+    gap:12px !important;
+  }
+
+  .menu-card{
+    min-height:0 !important;
+    height:190px !important;
+    padding:20px 18px 48px !important;
+  }
+
+  .menu-icon{
+    width:45px !important;
+    height:45px !important;
+    margin-bottom:11px !important;
+  }
+
+  .menu-title{
+    font-size:24px !important;
+    line-height:1.12 !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+    line-break:auto !important;
+  }
+
+  .menu-title-history{
+    max-width:100% !important;
+  }
+
+  .thai-word{
+    display:inline-block;
+    white-space:nowrap;
+  }
+
+  .menu-sub{
+    margin-top:6px !important;
+    font-size:13px !important;
+    line-height:1.35 !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+  }
+
+  .menu-card .menu-arrow{
+    right:14px !important;
+    bottom:13px !important;
+  }
+
+  /* Popup ประวัติ: สูงตามเนื้อหา ถ้าเยอะค่อยเลื่อน */
+  .history-modal{
+    padding:14px !important;
+  }
+
+  .history-box{
+    width:calc(100vw - 28px) !important;
+    max-width:460px !important;
+    min-height:0 !important;
+    height:auto !important;
+    max-height:calc(100dvh - 36px) !important;
+    margin:auto !important;
+    overflow:hidden !important;
+  }
+
+  .history-body{
+    flex:0 1 auto !important;
+    min-height:0 !important;
+    max-height:calc(100dvh - 150px) !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .history-title,
+  .history-subtitle,
+  .history-product,
+  .history-product-row-name,
+  .history-detail,
+  .history-tag{
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+    line-break:auto !important;
+  }
+}
