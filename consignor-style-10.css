@@ -1,0 +1,39 @@
+
+@media (max-width:1100px){
+
+  /* ขยับการ์ดข้อมูลผู้ฝากขายขึ้นอีก โดยไม่เปลี่ยนส่วนอื่น */
+  .main{
+    margin-top:-82px !important;
+  }
+
+  /* Popup จ่ายแล้ว / รอรับเงิน:
+     สูงตามเนื้อหา แต่ถ้ารายการเยอะให้เลื่อนภายใน */
+  #detailModal{
+    overflow:hidden !important;
+  }
+
+  #detailModal .modal-box{
+    display:flex !important;
+    flex-direction:column !important;
+    min-height:0 !important;
+    height:auto !important;
+    max-height:calc(100dvh - 36px) !important;
+    overflow:hidden !important;
+  }
+
+  #detailModal .modal-head{
+    flex:0 0 auto !important;
+  }
+
+  #detailModal .modal-content{
+    flex:0 1 auto !important;
+    min-height:0 !important;
+    height:auto !important;
+    max-height:calc(100dvh - 132px) !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch !important;
+    overscroll-behavior:contain !important;
+    touch-action:pan-y !important;
+  }
+}
