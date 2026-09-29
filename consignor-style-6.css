@@ -1,0 +1,106 @@
+
+/* =========================================================
+   CUSTOMER CONSIGNOR — MOBILE MODAL FINAL
+   ไม่เปลี่ยนโครงหน้าหลัก
+========================================================= */
+@media (max-width:680px){
+  .modal{
+    padding:8px !important;
+  }
+
+  .modal-box{
+    width:92vw !important;
+    max-width:92vw !important;
+    max-height:88svh !important;
+    border-radius:22px !important;
+  }
+
+  .modal-head{
+    padding:15px 16px !important;
+  }
+
+  .modal-title{
+    font-size:19px !important;
+    line-height:1.25 !important;
+  }
+
+  .modal-close{
+    width:38px !important;
+    height:38px !important;
+    flex:0 0 38px !important;
+    font-size:21px !important;
+  }
+
+  .modal-content{
+    padding:14px !important;
+  }
+
+  .history-card{
+    padding:15px !important;
+    margin-bottom:12px !important;
+    border-radius:17px !important;
+  }
+
+  .history-date{
+    font-size:13px !important;
+    line-height:1.4 !important;
+  }
+
+  .history-money{
+    font-size:20px !important;
+    line-height:1.2 !important;
+  }
+
+  .history-desc{
+    margin-top:8px !important;
+    font-size:13px !important;
+    line-height:1.65 !important;
+  }
+
+  .delivery-note-link{
+    margin-top:12px !important;
+    font-size:13px !important;
+  }
+
+  .proof-image{
+    width:auto !important;
+    max-width:100% !important;
+    max-height:62svh !important;
+  }
+
+  .proof-image-label{
+    margin-top:7px !important;
+    font-size:12px !important;
+  }
+
+  /* อ่านข้อมูลหน้าหลักง่ายขึ้นเล็กน้อย */
+  .detail-row{
+    grid-template-columns:108px minmax(0,1fr) !important;
+    gap:10px !important;
+  }
+
+  .detail-label{
+    font-size:11px !important;
+  }
+
+  .detail-value{
+    font-size:12px !important;
+    line-height:1.35 !important;
+  }
+
+  .product-title{
+    font-size:16px !important;
+  }
+
+  .price-strong{
+    font-size:16px !important;
+  }
+
+  .stat-label{
+    font-size:9px !important;
+  }
+
+  .stat-value{
+    font-size:15px !important;
+  }
+}
