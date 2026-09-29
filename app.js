@@ -1,0 +1,179 @@
+(() => {
+  'use strict';
+
+  const API_URL = 'https://script.google.com/macros/s/AKfycbzha4xvn3ha9ek0VweZYFubQrJ6-_Qeb3G2PHMWGHv5Tej6YCMjUzQMEmq6FWdeTQfo/exec';
+  const API_TIMEOUT_MS = 30000;
+  const POST_ACTIONS = new Set([
+    'registerCustomerMember',
+    'updateMemberPhotoData',
+    'markConsignorPaymentNotificationRead'
+  ]);
+  let callbackSeq = 0;
+
+  function callApiJsonp(action, args) {
+    return new Promise((resolve, reject) => {
+      const callbackName = '__baacCustomerPwaCb_' + Date.now() + '_' + (++callbackSeq);
+      const script = document.createElement('script');
+      let finished = false;
+      let timer = null;
+
+      const cleanup = () => {
+        if (finished) return;
+        finished = true;
+        if (timer) clearTimeout(timer);
+        try { delete window[callbackName]; } catch (_) { window[callbackName] = undefined; }
+        if (script.parentNode) script.parentNode.removeChild(script);
+      };
+
+      window[callbackName] = (result) => {
+        cleanup();
+        resolve(result);
+      };
+
+      script.onerror = () => {
+        cleanup();
+        reject(new Error('ไม่สามารถเชื่อมต่อ BAAC SMART OUTLET ได้ กรุณาตรวจสอบอินเทอร์เน็ตแล้วลองใหม่'));
+      };
+
+      const params = new URLSearchParams({
+        api: String(action || ''),
+        args: JSON.stringify(Array.isArray(args) ? args : []),
+        callback: callbackName,
+        _: String(Date.now())
+      });
+
+      script.src = API_URL + '?' + params.toString();
+      script.async = true;
+
+      timer = setTimeout(() => {
+        cleanup();
+        reject(new Error('การเชื่อมต่อใช้เวลานานเกินไป กรุณาลองใหม่'));
+      }, API_TIMEOUT_MS);
+
+      document.head.appendChild(script);
+    });
+  }
+
+  function callApiPost(action, args) {
+    return new Promise((resolve, reject) => {
+      const token = 'baac_' + Date.now() + '_' + (++callbackSeq) + '_' + Math.random().toString(36).slice(2);
+      const frameName = '__baacCustomerPwaFrame_' + Date.now() + '_' + callbackSeq;
+      const iframe = document.createElement('iframe');
+      const form = document.createElement('form');
+      let finished = false;
+      let timer = null;
+
+      iframe.name = frameName;
+      iframe.style.display = 'none';
+      iframe.setAttribute('aria-hidden', 'true');
+
+      form.method = 'POST';
+      form.action = API_URL;
+      form.target = frameName;
+      form.style.display = 'none';
+
+      const fields = {
+        api: String(action || ''),
+        args: JSON.stringify(Array.isArray(args) ? args : []),
+        token
+      };
+
+      Object.keys(fields).forEach((name) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = fields[name];
+        form.appendChild(input);
+      });
+
+      const cleanup = () => {
+        if (finished) return;
+        finished = true;
+        if (timer) clearTimeout(timer);
+        window.removeEventListener('message', onMessage);
+        if (form.parentNode) form.parentNode.removeChild(form);
+        if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+      };
+
+      const onMessage = (event) => {
+        const data = event && event.data;
+        if (!data || data.baacCustomerPwa !== true || data.token !== token) return;
+        cleanup();
+        if (data.ok) resolve(data.result);
+        else reject(new Error(data.message || 'เกิดข้อผิดพลาดในการเชื่อมต่อ'));
+      };
+
+      window.addEventListener('message', onMessage);
+      document.body.appendChild(iframe);
+      document.body.appendChild(form);
+
+      timer = setTimeout(() => {
+        cleanup();
+        reject(new Error('การเชื่อมต่อใช้เวลานานเกินไป กรุณาลองใหม่'));
+      }, API_TIMEOUT_MS);
+
+      form.submit();
+    });
+  }
+
+  function callApi(action, args) {
+    const normalizedArgs = Array.isArray(args) ? args : [];
+    const argText = JSON.stringify(normalizedArgs);
+    if (POST_ACTIONS.has(String(action || '')) || argText.length > 1500) {
+      return callApiPost(action, normalizedArgs);
+    }
+    return callApiJsonp(action, normalizedArgs);
+  }
+
+  // Compatibility layer: existing CUSTOMER pages can keep using
+  // google.script.run.withSuccessHandler(...).withFailureHandler(...).method(...)
+  function createRunner() {
+    let successHandler = null;
+    let failureHandler = null;
+    let proxy;
+
+    proxy = new Proxy({}, {
+      get(_obj, prop) {
+        if (prop === 'withSuccessHandler') {
+          return (fn) => { successHandler = typeof fn === 'function' ? fn : null; return proxy; };
+        }
+        if (prop === 'withFailureHandler') {
+          return (fn) => { failureHandler = typeof fn === 'function' ? fn : null; return proxy; };
+        }
+        if (prop === 'then') return undefined;
+        if (typeof prop === 'symbol') return undefined;
+
+        return (...args) => {
+          const onSuccess = successHandler;
+          const onFailure = failureHandler;
+          successHandler = null;
+          failureHandler = null;
+
+          callApi(String(prop), args)
+            .then((result) => {
+              if (typeof onSuccess === 'function') onSuccess(result);
+            })
+            .catch((error) => {
+              if (typeof onFailure === 'function') onFailure(error);
+              else console.error(error);
+            });
+        };
+      }
+    });
+    return proxy;
+  }
+
+  window.BAAC_CUSTOMER_API_URL = API_URL;
+  window.baacCustomerApi = callApi;
+  window.google = window.google || {};
+  window.google.script = window.google.script || {};
+  window.google.script.run = createRunner();
+
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch((error) => {
+        console.warn('Service worker registration failed', error);
+      });
+    });
+  }
+})();
