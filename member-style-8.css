@@ -1,0 +1,109 @@
+
+html,
+body{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow-x:hidden !important;
+  -webkit-text-size-adjust:100% !important;
+  text-size-adjust:100% !important;
+}
+
+@media (max-width:1100px){
+  .page{
+    width:100% !important;
+    min-height:100svh !important;
+    padding:12px !important;
+    overflow-x:hidden !important;
+  }
+
+  .container{
+    width:100% !important;
+    max-width:480px !important;
+    min-width:0 !important;
+    min-height:calc(100svh - 24px) !important;
+    margin:0 auto !important;
+    display:flex !important;
+    flex-direction:column !important;
+  }
+
+  /* คงข้อมูลสมาชิกแบบมือถือแต่ไม่บังคับให้ avatar แยกขึ้นบรรทัด */
+  .member-info-card .member-grid{
+    grid-template-columns:minmax(0,1fr) 96px !important;
+  }
+
+  .member-info-card .profile-area{
+    order:initial !important;
+  }
+
+  .member-info-card .info-row{
+    grid-template-columns:76px minmax(0,1fr) !important;
+  }
+
+  /* ระดับสมาชิกยังคง 3 ช่องตามรูปเดิม */
+  .levels{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:8px !important;
+  }
+
+  /* รูปที่ 4 — ดันส่วนเมนูลงด้านล่างของหน้าจอและเก็บ footer ไว้ท้ายสุด */
+  .menu{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:12px !important;
+    margin-top:auto !important;
+    padding-top:20px !important;
+  }
+
+  .menu-card{
+    position:relative !important;
+    min-width:0 !important;
+    min-height:145px !important;
+    padding-bottom:48px !important;
+  }
+
+  /* ลูกศรเล็กในแต่ละการ์ดลงด้านล่างสุด */
+  .menu-card .menu-arrow{
+    position:absolute !important;
+    right:14px !important;
+    bottom:14px !important;
+    top:auto !important;
+    margin:0 !important;
+  }
+
+  .footer{
+    margin-top:14px !important;
+    padding-bottom:max(8px,env(safe-area-inset-bottom)) !important;
+  }
+
+  /* รูปที่ 6 — ประวัติการซื้อขยายให้ใช้พื้นที่จอมือถือ */
+  .history-modal{
+    padding:14px !important;
+    align-items:center !important;
+    justify-content:center !important;
+  }
+
+  .history-box{
+    width:calc(100vw - 28px) !important;
+    max-width:460px !important;
+    min-width:0 !important;
+    height:min(74dvh,680px) !important;
+    max-height:calc(100dvh - 56px) !important;
+    margin:auto !important;
+    display:flex !important;
+    flex-direction:column !important;
+    overflow:hidden !important;
+    border-radius:24px !important;
+  }
+
+  .history-header{
+    flex:0 0 auto !important;
+  }
+
+  .history-body{
+    flex:1 1 auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    overflow-y:auto !important;
+    padding-bottom:max(14px,env(safe-area-inset-bottom)) !important;
+  }
+}
