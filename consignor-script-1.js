@@ -1,32 +1,89 @@
-
-
   let consignorId = '';
+
+  function normalizeConsignorId(value){
+    return String(value || '').trim();
+  }
+
+  function saveConsignorSession(id, phone){
+    id = normalizeConsignorId(id);
+    phone = String(phone || '').replace(/\D/g, '').trim();
+
+    try {
+      if(id) localStorage.setItem('baacConsignorId', id);
+      if(phone) localStorage.setItem('baacConsignorPhone', phone);
+    } catch (e) {}
+
+    try {
+      if(id) sessionStorage.setItem('baacConsignorId', id);
+      if(phone) sessionStorage.setItem('baacConsignorPhone', phone);
+    } catch (e) {}
+  }
 
   function resolveConsignorId(){
     let id = '';
 
+    // 1) query string
     try{
       const params = new URLSearchParams(window.location.search);
-      id = String(params.get('consignorId') || '').trim();
+      id = normalizeConsignorId(params.get('consignorId'));
     }catch(e){}
+
+    // 2) hash fallback
+    if(!id){
+      try{
+        const hash = String(window.location.hash || '').replace(/^#/, '');
+        const hashParams = new URLSearchParams(hash);
+        id = normalizeConsignorId(
+          hashParams.get('consignor') ||
+          hashParams.get('consignorId')
+        );
+      }catch(e){}
+    }
+
+    // 3) sessionStorage
+    if(!id){
+      try{
+        id = normalizeConsignorId(
+          sessionStorage.getItem('baacConsignorId')
+        );
+      }catch(e){}
+    }
+
+    // 4) localStorage
+    if(!id){
+      try{
+        id = normalizeConsignorId(
+          localStorage.getItem('baacConsignorId')
+        );
+      }catch(e){}
+    }
+
+    if(id){
+      consignorId = id;
+      saveConsignorSession(id, '');
+    }
+
+    return id;
+  }
+
+  function resolveConsignorPhone(){
+    let phone = '';
 
     try{
-      if(!id){
-        id = String(
-          localStorage.getItem('baacConsignorId') || ''
-        ).trim();
-      }
-
-      if(id){
-        localStorage.setItem(
-          'baacConsignorId',
-          id
-        );
-      }
+      phone = String(
+        sessionStorage.getItem('baacConsignorPhone') || ''
+      ).replace(/\D/g, '').trim();
     }catch(e){}
 
-    consignorId = id;
-    return id;
+    if(!phone){
+      try{
+        phone = String(
+          localStorage.getItem('baacConsignorPhone') || ''
+        ).replace(/\D/g, '').trim();
+      }catch(e){}
+    }
+
+    return phone;
   }
 
   resolveConsignorId();
@@ -210,60 +267,90 @@
      LOAD
   ======================================================== */
 
+  function loadConsignorData(id){
+
+    google.script.run
+      .withSuccessHandler(function(result){
+
+        if(!result || !result.success){
+          showError(
+            result && result.message
+              ? result.message
+              : 'ไม่สามารถโหลดข้อมูลได้'
+          );
+          return;
+        }
+
+        pageData = result;
+        renderPage(result);
+        showNewPaymentNotification();
+      })
+      .withFailureHandler(function(error){
+        console.error(error);
+        showError('เกิดข้อผิดพลาดในการโหลดข้อมูล');
+      })
+      .getConsignorData(id);
+  }
+
+
   function loadConsignor(){
 
-    if(!consignorId){
+    let id = resolveConsignorId();
 
-      showError(
-        'ไม่พบรหัสผู้ฝากขาย กรุณาเข้าสู่ระบบใหม่'
-      );
+    if(id){
+      loadConsignorData(id);
+      return;
+    }
+
+    // ถ้า iPhone/WebView ทำ URL/session ID หลุด ให้กู้ ID จากเบอร์ที่ Login สำเร็จ
+    const savedPhone = resolveConsignorPhone();
+
+    if(savedPhone.length === 10){
+
+      document
+        .getElementById('app')
+        .innerHTML =
+          '<div class="loading">กำลังกู้ข้อมูลผู้ฝากขาย...</div>';
+
+      google.script.run
+        .withSuccessHandler(function(result){
+
+          if(!result || !result.success || !result.consignorId){
+            showError('ไม่พบรหัสผู้ฝากขาย กรุณาเข้าสู่ระบบใหม่');
+            return;
+          }
+
+          id = normalizeConsignorId(result.consignorId);
+          consignorId = id;
+          saveConsignorSession(id, savedPhone);
+
+          // อัปเดต URL โดยไม่ reload เพื่อให้ state ชัดเจน
+          try{
+            history.replaceState(
+              null,
+              '',
+              './consignor.html?consignorId=' +
+                encodeURIComponent(id) +
+                '#consignor=' +
+                encodeURIComponent(id)
+            );
+          }catch(e){}
+
+          loadConsignorData(id);
+        })
+        .withFailureHandler(function(error){
+          console.error(error);
+          showError('ไม่พบรหัสผู้ฝากขาย กรุณาเข้าสู่ระบบใหม่');
+        })
+        .loginConsignor(savedPhone);
 
       return;
     }
 
-
-    google.script.run
-
-      .withSuccessHandler(
-        function(result){
-
-          if(
-            !result ||
-            !result.success
-          ){
-
-            showError(
-              result && result.message
-                ? result.message
-                : 'ไม่สามารถโหลดข้อมูลได้'
-            );
-
-            return;
-          }
-
-          pageData = result;
-
-          renderPage(result);
-          showNewPaymentNotification();
-        }
-      )
-
-      .withFailureHandler(
-        function(error){
-
-          console.error(error);
-
-          showError(
-            'เกิดข้อผิดพลาดในการโหลดข้อมูล'
-          );
-        }
-      )
-
-      .getConsignorData(
-        consignorId
-      );
+    showError(
+      'ไม่พบรหัสผู้ฝากขาย กรุณาเข้าสู่ระบบใหม่'
+    );
   }
-
 
   /* ========================================================
      PAGE
