@@ -148,6 +148,17 @@
                 memberId
               );
 
+              if(result.member){
+                localStorage.setItem(
+                  'baacMemberSnapshot',
+                  JSON.stringify({
+                    memberId: memberId,
+                    member: result.member,
+                    savedAt: Date.now()
+                  })
+                );
+              }
+
             } catch (e) {
 
               console.log(
@@ -291,6 +302,17 @@
                 'baacMemberId',
                 memberId
               );
+
+              if(result.member){
+                localStorage.setItem(
+                  'baacMemberSnapshot',
+                  JSON.stringify({
+                    memberId: memberId,
+                    member: result.member,
+                    savedAt: Date.now()
+                  })
+                );
+              }
             } catch (e) {
               console.log(
                 'ไม่สามารถบันทึกข้อมูลการเข้าสู่ระบบในเครื่องได้'
