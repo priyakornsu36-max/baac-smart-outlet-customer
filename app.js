@@ -321,9 +321,11 @@
   // Start warming Apps Script as soon as app.js loads.
   // By the time the customer finishes typing a phone number,
   // the backend is usually already warm.
-  window.__baacWarmupPromise =
-    callApiJsonp('warmup', [])
-      .catch(() => null);
+  window.__baacWarmupPromise = null;
+  if (/(?:\/|\/index\.html)$/.test(window.location.pathname)) {
+    window.__baacWarmupPromise =
+      callApiJsonp('warmup', []).catch(() => null);
+  }
 
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
     window.addEventListener('load', () => {

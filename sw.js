@@ -1,4 +1,4 @@
-const CACHE_NAME = 'baac-customer-pwa-v11';
+const CACHE_NAME = 'baac-customer-pwa-v12';
 const APP_SHELL = [
   './',
   './index.html',
@@ -8,7 +8,11 @@ const APP_SHELL = [
   './app.js',
   './manifest.webmanifest',
   './customer-font.css',
-  './icon.svg'
+  './icon.svg',
+  './icon-192.png',
+  './tier-general-art.png',
+  './tier-silver-art.png',
+  './tier-gold-art.png'
 ];
 
 self.addEventListener('install', event => {
