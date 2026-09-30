@@ -1,4 +1,4 @@
-const CACHE_NAME = 'baac-customer-pwa-v8';
+const CACHE_NAME = 'baac-customer-pwa-v9';
 const APP_SHELL = [
   './',
   './index.html',
