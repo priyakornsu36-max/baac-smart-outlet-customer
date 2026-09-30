@@ -15,3 +15,11 @@ Backend (Google Apps Script Web App):
 - `sw.js` App Shell cache
 
 > Repository นี้เป็น CUSTOMER PWA เท่านั้น ไม่รวม STAFF/POS
+## ติดตั้งแอปฟรีด้วย QR
+
+สแกน QR ที่ชี้ไปยัง `https://priyakornsu36-max.github.io/baac-smart-outlet-customer/install.html` เพื่อเข้าสู่หน้าติดตั้ง
+- Android: เปิดด้วย Chrome แล้วกดติดตั้งแอป (หรือเมนู Chrome > ติดตั้งแอป)
+- iPhone: เปิดด้วย Safari แล้วกดแชร์ > เพิ่มไปยังหน้าจอโฮม > เพิ่ม
+- หลังติดตั้ง เปิดจากไอคอน BAAC OUTLET ได้ ไม่ต้องสแกน QR ซ้ำ
+
+PWA ติดตั้งฟรีผ่าน GitHub Pages โดยไม่ใช้ App Store; การเข้าถึงข้อมูลยังขึ้นอยู่กับระบบยืนยันตัวตนของ Apps Script

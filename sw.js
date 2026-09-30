@@ -1,7 +1,8 @@
-const CACHE_NAME = 'baac-customer-pwa-v12';
+const CACHE_NAME = 'baac-customer-pwa-v13';
 const APP_SHELL = [
   './',
   './index.html',
+  './install.html',
   './member.html',
   './products.html',
   './consignor.html',
