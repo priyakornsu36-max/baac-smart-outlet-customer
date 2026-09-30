@@ -35,7 +35,8 @@
       };
 
       const params = new URLSearchParams({
-        api: String(action || ''),
+        page: 'api',
+        action: String(action || ''),
         args: JSON.stringify(Array.isArray(args) ? args : []),
         callback: callbackName,
         _: String(Date.now())
@@ -72,7 +73,8 @@
       form.style.display = 'none';
 
       const fields = {
-        api: String(action || ''),
+        page: 'api',
+        action: String(action || ''),
         args: JSON.stringify(Array.isArray(args) ? args : []),
         token
       };
