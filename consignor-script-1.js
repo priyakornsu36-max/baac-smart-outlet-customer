@@ -1,7 +1,35 @@
 
 
-  const consignorId =
-    '';
+  let consignorId = '';
+
+  function resolveConsignorId(){
+    let id = '';
+
+    try{
+      const params = new URLSearchParams(window.location.search);
+      id = String(params.get('consignorId') || '').trim();
+    }catch(e){}
+
+    try{
+      if(!id){
+        id = String(
+          localStorage.getItem('baacConsignorId') || ''
+        ).trim();
+      }
+
+      if(id){
+        localStorage.setItem(
+          'baacConsignorId',
+          id
+        );
+      }
+    }catch(e){}
+
+    consignorId = id;
+    return id;
+  }
+
+  resolveConsignorId();
 
   let pageData = null;
 
