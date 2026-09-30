@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-title" content="BAAC OUTLET">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <script src="app.js?v=8"></script>
+  <script src="app.js?v=9"></script>
 
       <base target="_top">
 
@@ -3217,6 +3217,14 @@ body{
           const photoDataUrl =
             await resizeMemberPhotoToDataUrl(file);
 
+          // แสดงรูปที่เลือกทันที ไม่ต้องรอ Apps Script ตอบกลับ
+          renderMemberPhoto(photoDataUrl);
+
+          setMemberPhotoStatus(
+            'กำลังบันทึกรูป...',
+            ''
+          );
+
           google.script.run
             .withSuccessHandler(
               function(result){
@@ -3239,9 +3247,38 @@ body{
                   return;
                 }
 
+                const savedPhotoUrl =
+                  String(result.photoUrl || photoDataUrl || '');
+
                 renderMemberPhoto(
-                  String(result.photoUrl || photoDataUrl || '')
+                  savedPhotoUrl
                 );
+
+                // เก็บรูปใหม่ใน snapshot ด้วย เพื่อกลับเข้าหน้านี้แล้วไม่ย้อนเป็นรูปเก่า
+                try{
+                  const rawSnapshot =
+                    localStorage.getItem('baacMemberSnapshot');
+
+                  if(rawSnapshot){
+                    const snapshot =
+                      JSON.parse(rawSnapshot);
+
+                    if(
+                      snapshot &&
+                      snapshot.member &&
+                      String(snapshot.memberId || '').trim() ===
+                        String(memberId || '').trim()
+                    ){
+                      snapshot.member.photoUrl = savedPhotoUrl;
+                      snapshot.savedAt = Date.now();
+
+                      localStorage.setItem(
+                        'baacMemberSnapshot',
+                        JSON.stringify(snapshot)
+                      );
+                    }
+                  }
+                }catch(e){}
 
                 setMemberPhotoStatus(
                   'บันทึกรูปเรียบร้อย ✓',
