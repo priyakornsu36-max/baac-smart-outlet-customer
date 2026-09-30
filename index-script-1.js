@@ -371,128 +371,95 @@
           .trim();
 
       if (!phone) {
-
         showBaacPopup(
           'กรุณาตรวจสอบข้อมูล',
           'กรุณากรอกเบอร์โทรศัพท์',
           'warning'
         );
-
         return;
       }
 
       if (phone.length !== 10) {
-
         showBaacPopup(
           'กรุณาตรวจสอบข้อมูล',
           'กรุณากรอกเบอร์โทรศัพท์ 10 หลัก',
           'warning'
         );
-
         return;
       }
 
       const button =
-        document.getElementById(
-          'consignorLoginButton'
-        );
+        document.getElementById('consignorLoginButton');
 
       button.disabled = true;
-      button.textContent =
-        'กำลังตรวจสอบ...';
+      button.textContent = 'กำลังตรวจสอบ...';
 
       google.script.run
+        .withSuccessHandler(function(result) {
 
-        .withSuccessHandler(
-          function(result) {
+          button.disabled = false;
+          button.textContent = 'เข้าสู่ระบบ';
 
-            button.disabled = false;
-            button.textContent =
-              'เข้าสู่ระบบ';
-
-            if (
-              !result ||
-              !result.success
-            ) {
-
-              showBaacPopup(
-                'ไม่พบข้อมูล',
-                result && result.message
-                  ? result.message
-                  : 'ไม่พบข้อมูลผู้ฝากขาย',
-                'warning'
-              );
-
-              return;
-            }
-
-            const consignorId =
-              result.consignorId;
-
-            if (!consignorId) {
-
-              showBaacPopup(
-                'เกิดข้อผิดพลาด',
-                'ไม่สามารถอ่านรหัสผู้ฝากขายได้',
-                'error'
-              );
-
-              return;
-            }
-
-            try {
-
-              localStorage.setItem(
-                'baacConsignorId',
-                consignorId
-              );
-
-            } catch (e) {
-
-              console.log(
-                'ไม่สามารถบันทึกข้อมูลผู้ฝากขายในเครื่องได้'
-              );
-
-            }
-
+          if (!result || !result.success) {
             showBaacPopup(
-              'เข้าสู่ระบบสำเร็จ',
-              result.consignorName + ' (' + consignorId + ')',
-              'success',
-              function() {
-                window.open(
-                  'consignor.html?consignorId=' +
-                  encodeURIComponent(consignorId),
-                  '_top'
-                );
-              }
+              'ไม่พบข้อมูล',
+              result && result.message
+                ? result.message
+                : 'ไม่พบข้อมูลผู้ฝากขาย',
+              'warning'
             );
-
+            return;
           }
-        )
 
-        .withFailureHandler(
-          function(error) {
+          const consignorId =
+            String(result.consignorId || '').trim();
 
-            button.disabled = false;
-            button.textContent =
-              'เข้าสู่ระบบ';
-
+          if (!consignorId) {
             showBaacPopup(
               'เกิดข้อผิดพลาด',
-              'เกิดข้อผิดพลาดในการตรวจสอบผู้ฝากขาย',
+              'ไม่สามารถอ่านรหัสผู้ฝากขายได้',
               'error'
             );
-
-            console.error(error);
-
+            return;
           }
-        )
 
+          // บันทึกซ้ำสอง storage เพื่อกัน iPhone/WebView ทำ session หลุด
+          try {
+            localStorage.setItem('baacConsignorId', consignorId);
+            localStorage.setItem('baacConsignorPhone', phone);
+          } catch (e) {}
+
+          try {
+            sessionStorage.setItem('baacConsignorId', consignorId);
+            sessionStorage.setItem('baacConsignorPhone', phone);
+          } catch (e) {}
+
+          // ใส่รหัสทั้ง query และ hash เผื่อ WebView ตัด query ออก
+          const target =
+            './consignor.html?consignorId=' +
+            encodeURIComponent(consignorId) +
+            '#consignor=' +
+            encodeURIComponent(consignorId);
+
+          window.location.assign(target);
+        })
+        .withFailureHandler(function(error) {
+
+          button.disabled = false;
+          button.textContent = 'เข้าสู่ระบบ';
+
+          showBaacPopup(
+            'เกิดข้อผิดพลาด',
+            error && error.message
+              ? error.message
+              : 'เกิดข้อผิดพลาดในการตรวจสอบผู้ฝากขาย',
+            'error'
+          );
+
+          console.error(error);
+        })
         .loginConsignor(phone);
-
     }
-
 
     document
       .getElementById('customerPhone')
