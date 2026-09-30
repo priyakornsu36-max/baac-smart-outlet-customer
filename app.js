@@ -229,6 +229,13 @@
   window.google.script = window.google.script || {};
   window.google.script.run = createRunner();
 
+  // Start warming Apps Script as soon as app.js loads.
+  // By the time the customer finishes typing a phone number,
+  // the backend is usually already warm.
+  window.__baacWarmupPromise =
+    callApiJsonp('warmup', [])
+      .catch(() => null);
+
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js').catch((error) => {
