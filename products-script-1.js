@@ -733,7 +733,7 @@
       'member.html' +
       (
         savedMemberId
-          ? '&memberId=' + encodeURIComponent(savedMemberId)
+          ? '?memberId=' + encodeURIComponent(savedMemberId)
           : ''
       );
 
