@@ -576,9 +576,13 @@
 
     try{
 
-      localStorage.removeItem(
-        'baacConsignorId'
-      );
+      localStorage.removeItem('baacConsignorId');
+      localStorage.removeItem('baacConsignorPhone');
+
+      try{
+        sessionStorage.removeItem('baacConsignorId');
+        sessionStorage.removeItem('baacConsignorPhone');
+      }catch(e){}
 
     }catch(e){}
 
