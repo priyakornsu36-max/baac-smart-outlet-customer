@@ -169,6 +169,91 @@
     return callApiJsonp('registerCustomerMember', args);
   }
 
+  async function verifyMemberPhoto(memberId, photoDataUrl) {
+    memberId = String(memberId || '').trim();
+    photoDataUrl = String(photoDataUrl || '').trim();
+
+    if (!memberId || !photoDataUrl) return null;
+
+    try {
+      const check = await callApiJsonp('getMemberData', [memberId]);
+      const savedPhoto = String(
+        check && check.member && check.member.photoUrl
+          ? check.member.photoUrl
+          : ''
+      ).trim();
+
+      if (
+        check &&
+        check.success &&
+        savedPhoto &&
+        savedPhoto === photoDataUrl
+      ) {
+        return {
+          success: true,
+          photoUrl: savedPhoto,
+          message: 'บันทึกรูปสมาชิกเรียบร้อย'
+        };
+      }
+    } catch (_) {}
+
+    return null;
+  }
+
+  async function updateMemberPhotoFast(args) {
+    const memberId = String(args && args[0] ? args[0] : '').trim();
+    const photoDataUrl = String(args && args[1] ? args[1] : '').trim();
+
+    if (!memberId || !photoDataUrl) {
+      return callApiPost('updateMemberPhotoData', args);
+    }
+
+    let postDone = false;
+    let postResult = null;
+    let postError = null;
+
+    callApiPost('updateMemberPhotoData', args)
+      .then((result) => {
+        postDone = true;
+        postResult = result;
+      })
+      .catch((error) => {
+        postDone = true;
+        postError = error;
+      });
+
+    // iPhone/Safari may lose Apps Script postMessage even when Sheets was saved.
+    // Verify the saved image directly instead of waiting 30 seconds for a false timeout.
+    const delays = [900, 1300, 1800, 2400];
+
+    for (const delay of delays) {
+      await wait(delay);
+
+      if (postResult) {
+        return postResult;
+      }
+
+      const verified =
+        await verifyMemberPhoto(memberId, photoDataUrl);
+
+      if (verified) {
+        return verified;
+      }
+    }
+
+    // One final verification before reporting a real error.
+    const verified =
+      await verifyMemberPhoto(memberId, photoDataUrl);
+
+    if (verified) {
+      return verified;
+    }
+
+    throw postError || new Error(
+      'ยังไม่สามารถยืนยันการบันทึกรูปได้ กรุณาลองอีกครั้ง'
+    );
+  }
+
   function callApi(action, args) {
     const normalizedArgs = Array.isArray(args) ? args : [];
     const argText = JSON.stringify(normalizedArgs);
@@ -176,6 +261,10 @@
 
     if (action === 'registerCustomerMember') {
       return registerCustomerFast(normalizedArgs);
+    }
+
+    if (action === 'updateMemberPhotoData') {
+      return updateMemberPhotoFast(normalizedArgs);
     }
 
     if (POST_ACTIONS.has(action) || argText.length > 1500) {
