@@ -5,35 +5,67 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0d5632">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="BAAC OUTLET">
-  <meta name="description" content="ติดตั้งแอป BAAC SMART OUTLET CUSTOMER ฟรีบน iPhone และ Android">
+  <meta name="apple-mobile-web-app-title" content="BAAC SMART OUTLET">
+  <meta name="description" content="วิธีเพิ่ม BAAC SMART OUTLET ไปยังหน้าจอหลักบน iPhone, iPad และ Android">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="./icon-192.png">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <title>ติดตั้งแอป BAAC SMART OUTLET ฟรี</title>
+  <title>ติดตั้ง BAAC SMART OUTLET</title>
   <style>
     *{box-sizing:border-box}
-    html{min-height:100%;background:#f2f6ed}
-    body{margin:0;min-height:100svh;padding:22px 16px max(28px,env(safe-area-inset-bottom));display:grid;place-items:center;font-family:Kanit,system-ui,sans-serif;color:#20422d;background:radial-gradient(circle at 0 0,#f8edcf,transparent 35%),radial-gradient(circle at 100% 100%,#deecdf,transparent 40%),linear-gradient(140deg,#f8f5eb,#eef6ed)}
-    .card{width:min(100%,460px);padding:28px 25px 24px;background:#fff;border:1px solid #e9eee6;border-radius:27px;box-shadow:0 22px 70px rgba(25,79,43,.12);text-align:center}
-    .icon{width:96px;height:96px;display:block;margin:2px auto 14px;border-radius:22px;box-shadow:0 8px 22px rgba(17,90,49,.14)}
-    h1{font-size:26px;line-height:1.2;color:#126b36;margin:0;font-weight:600}
-    .sub{font-size:14px;color:#708274;margin:8px 0 22px;font-weight:300}
-    .pill{display:inline-block;padding:5px 14px;background:#e8f5eb;color:#117143;border-radius:30px;font-size:12px;font-weight:500;margin-bottom:17px}
-    .primary{display:block;width:100%;min-height:56px;padding:13px 18px;border:0;border-radius:15px;background:linear-gradient(130deg,#168447,#0c6334);color:#fff;font:500 18px Kanit,system-ui,sans-serif;box-shadow:0 9px 22px rgba(16,110,56,.22);cursor:pointer;text-decoration:none}
+    html{-webkit-text-size-adjust:100%;min-height:100%;background:#f3f7ef}
+    body{
+      margin:0;min-height:100vh;min-height:100svh;
+      padding:clamp(18px,4vh,38px) 16px max(22px,env(safe-area-inset-bottom));
+      display:flex;align-items:center;justify-content:center;
+      font-family:Kanit,system-ui,sans-serif;color:#244831;
+      background:radial-gradient(circle at 0 0,#fbf0d5,transparent 38%),
+        radial-gradient(circle at 100% 100%,#dcecdf,transparent 45%),
+        linear-gradient(145deg,#f9f8f1,#eff6ee);
+    }
+    .card{
+      width:min(100%,430px);margin:auto;padding:clamp(24px,5vw,34px) clamp(19px,5vw,32px);
+      background:#fff;border:1px solid #e4eee5;border-radius:28px;
+      box-shadow:0 18px 55px rgba(22,83,48,.09);text-align:center;
+    }
+    .icon{
+      width:88px;height:88px;display:block;margin:0 auto 17px;
+      border-radius:22px;box-shadow:0 8px 24px rgba(17,90,49,.13);
+    }
+    h1{font-size:clamp(23px,6vw,29px);line-height:1.22;color:#1c6039;margin:0;font-weight:700;letter-spacing:.01em}
+    .sub{font-size:15px;color:#77867b;margin:10px 0 0;font-weight:400}
+    .help{
+      margin-top:26px;padding:22px 19px;text-align:left;background:#f7fbf7;
+      border-radius:20px;border:1px solid #e1eee3;
+    }
+    .help h2{font-size:20px;margin:0 0 16px;color:#205c38;font-weight:600}
+    .step{display:flex;align-items:flex-start;gap:13px;margin:0 0 17px;font-size:15px;line-height:1.6;color:#415a49}
+    .step:last-child{margin-bottom:0}
+    .num{
+      flex:none;width:30px;height:30px;border-radius:50%;background:#e5f2e9;
+      color:#25643f;text-align:center;line-height:30px;font-size:15px;font-weight:600;
+    }
+    .primary{
+      display:block;width:100%;min-height:52px;margin-top:23px;padding:12px 16px;
+      border:0;border-radius:15px;background:linear-gradient(130deg,#168447,#0c6334);
+      color:#fff;font:500 17px Kanit,system-ui,sans-serif;cursor:pointer;
+    }
     .primary:active{transform:translateY(1px)}
-    .secondary{display:block;width:100%;margin-top:12px;padding:11px;border-radius:13px;border:1px solid #c8dccd;color:#146d3d;background:#fff;text-decoration:none;font-size:14px}
-    .help{margin-top:19px;padding:17px 16px;text-align:left;background:#f4f9f4;border-radius:17px;border:1px solid #e2eee4}
-    .help h2{font-size:17px;margin:0 0 10px;color:#155c33;font-weight:600}
-    .step{display:flex;align-items:flex-start;gap:11px;margin:10px 0;font-size:14px;line-height:1.55;color:#3f5c48}
-    .num{flex:none;width:27px;height:27px;border-radius:50%;background:#e3f1e6;color:#13743e;text-align:center;line-height:27px;font-size:14px;font-weight:600}
-    .note{font-size:12px;color:#708375;margin:14px 0 0;line-height:1.55}
-    .warning{margin:0 0 14px;padding:11px 12px;border-radius:12px;background:#fff6df;color:#78561b;font-size:13px;line-height:1.5}
+    .warning{
+      margin:23px 0 0;padding:12px;border-radius:13px;
+      background:#fff6df;color:#78561b;font-size:14px;line-height:1.55;
+    }
     [hidden]{display:none!important}
-    @media(max-width:380px){.card{padding:23px 17px}.icon{width:82px;height:82px}h1{font-size:23px}}
+    @media(max-width:380px){
+      .card{padding:24px 19px;border-radius:23px}
+      .icon{width:80px;height:80px}
+      .help{padding:19px 15px;margin-top:23px}
+      .step{font-size:14px;gap:11px}
+    }
+    @media(min-width:700px){.card{width:450px;padding:36px}}
   </style>
 </head>
 <body>
@@ -41,7 +73,6 @@
     <img class="icon" src="./icon-192.png" alt="ไอคอน BAAC SMART OUTLET" width="96" height="96">
     <h1>BAAC SMART OUTLET</h1>
     <p class="sub">แอปสำหรับลูกค้าและผู้ฝากขาย</p>
-    <span class="pill">ติดตั้งฟรี • ไม่ต้องผ่าน App Store</span>
     <p id="browserWarning" class="warning" hidden>กรุณาเปิดหน้านี้ด้วย Safari บน iPhone หรือ Chrome บน Android เพื่อดำเนินการติดตั้ง</p>
     <section id="androidSection" hidden>
       <button class="primary" id="installButton" type="button">ติดตั้งแอปฟรี</button>
@@ -49,7 +80,7 @@
         <h2>วิธีติดตั้งบน Android</h2>
         <div class="step"><span class="num">1</span><span>เปิดหน้านี้ด้วย Google Chrome</span></div>
         <div class="step"><span class="num">2</span><span>กดปุ่ม “ติดตั้งแอปฟรี” หรือเมนู ⋮ แล้วเลือก “ติดตั้งแอป” / “เพิ่มไปยังหน้าจอหลัก”</span></div>
-        <div class="step"><span class="num">3</span><span>กดไอคอน BAAC OUTLET บนหน้าจอมือถือเพื่อเข้าแอป</span></div>
+        <div class="step"><span class="num">3</span><span>กดไอคอน BAAC SMART OUTLET บนหน้าจอมือถือเพื่อเข้าแอป</span></div>
       </div>
     </section>
     <section id="iosSection" hidden>
@@ -57,15 +88,12 @@
         <h2>ติดตั้งบน iPhone / iPad</h2>
         <div class="step"><span class="num">1</span><span>เปิดหน้านี้ใน Safari (หากเปิดจาก LINE ให้เลือก “เปิดใน Safari”)</span></div>
         <div class="step"><span class="num">2</span><span>แตะปุ่มแชร์ <strong>□↑</strong> ใน Safari แล้วเลือก <strong>“เพิ่มไปยังหน้าจอโฮม”</strong></span></div>
-        <div class="step"><span class="num">3</span><span>แตะ <strong>“เพิ่ม”</strong> แล้วกดไอคอน BAAC OUTLET บนหน้าจอมือถือ</span></div>
+        <div class="step"><span class="num">3</span><span>แตะ <strong>“เพิ่ม”</strong> แล้วกดไอคอน BAAC SMART OUTLET บนหน้าจอมือถือ</span></div>
       </div>
-      <p class="note">iPhone ไม่รองรับปุ่มติดตั้งจากเว็บไซต์โดยตรง จึงต้องเพิ่มไปยังหน้าจอโฮมครั้งแรกเท่านั้น</p>
     </section>
     <section id="installedSection" hidden>
-      <div class="help"><h2>พร้อมใช้งานแล้ว</h2><p style="font-size:14px;margin:0">เปิดแอปจากไอคอน BAAC OUTLET บนหน้าจอมือถือได้เลย</p></div>
+      <div class="help"><h2>พร้อมใช้งานแล้ว</h2><p style="font-size:14px;margin:0">เปิดแอปจากไอคอน BAAC SMART OUTLET บนหน้าจอมือถือได้เลย</p></div>
     </section>
-    <a class="secondary" href="./index.html">เปิด BAAC SMART OUTLET</a>
-    <p class="note">ติดตั้งครั้งเดียว ใช้งานผ่านไอคอนแอปได้โดยไม่ต้องสแกน QR ซ้ำ<br>ข้อมูลสมาชิกและยอดขายต้องเชื่อมต่ออินเทอร์เน็ต</p>
   </main>
   <script>
   (function(){
@@ -79,7 +107,7 @@
     var iphone=document.getElementById('iosSection');
     var installed=document.getElementById('installedSection');
     var btn=document.getElementById('installButton');
-    if(standalone){installed.hidden=false}
+    if(standalone){window.location.replace('./index.html');return;}
     else if(ios){iphone.hidden=false}
     else{android.hidden=false}
     if(embedded&&!standalone){document.getElementById('browserWarning').hidden=false}
