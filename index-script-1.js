@@ -147,6 +147,10 @@
                 'baacMemberId',
                 memberId
               );
+              sessionStorage.setItem(
+                'baacMemberId',
+                memberId
+              );
 
               if(result.member){
                 localStorage.setItem(
@@ -299,6 +303,10 @@
 
             try {
               localStorage.setItem(
+                'baacMemberId',
+                memberId
+              );
+              sessionStorage.setItem(
                 'baacMemberId',
                 memberId
               );
@@ -529,3 +537,41 @@
     );
 
   
+
+    /* =========================
+       CUSTOMER LOGIN PERSISTENCE
+       เปิดแอปครั้งถัดไปแล้วเข้าหน้าสมาชิกเดิมอัตโนมัติ
+       จนกว่าผู้ใช้จะกด "ออกจากระบบ"
+       ========================= */
+    function resumeCustomerLogin() {
+      var memberId = '';
+
+      try {
+        memberId = String(
+          localStorage.getItem('baacMemberId') ||
+          sessionStorage.getItem('baacMemberId') ||
+          ''
+        ).trim();
+
+        if (memberId) {
+          localStorage.setItem('baacMemberId', memberId);
+          sessionStorage.setItem('baacMemberId', memberId);
+        }
+      } catch (e) {}
+
+      if (!memberId) {
+        return;
+      }
+
+      window.location.replace(
+        'member.html?memberId=' +
+        encodeURIComponent(memberId)
+      );
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', resumeCustomerLogin);
+    } else {
+      resumeCustomerLogin();
+    }
+
