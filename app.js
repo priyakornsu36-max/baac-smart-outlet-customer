@@ -327,6 +327,91 @@
       callApiJsonp('warmup', []).catch(() => null);
   }
 
+
+  // Pull-to-refresh for CUSTOMER PWA (iPhone/iPad standalone included).
+  // Starts only when the page is already at the very top.
+  function installPullToRefresh() {
+    if (window.__baacPullToRefreshInstalled) return;
+    window.__baacPullToRefreshInstalled = true;
+
+    let startY = 0;
+    let pulling = false;
+    let distance = 0;
+    const threshold = 78;
+
+    const indicator = document.createElement('div');
+    indicator.setAttribute('aria-hidden', 'true');
+    indicator.style.cssText =
+      'position:fixed;left:50%;top:10px;z-index:2147483647;' +
+      'transform:translate(-50%,-70px);opacity:0;' +
+      'padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.96);' +
+      'color:#0d6f40;font:700 13px "FC Subject Rounded",sans-serif;' +
+      'box-shadow:0 5px 18px rgba(0,0,0,.14);pointer-events:none;' +
+      'transition:transform .16s ease,opacity .16s ease;';
+    indicator.textContent = '↓ ดึงลงเพื่อรีเฟรช';
+    document.body.appendChild(indicator);
+
+    function atTop() {
+      return (window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0) <= 0;
+    }
+
+    document.addEventListener('touchstart', function (event) {
+      if (!event.touches || event.touches.length !== 1 || !atTop()) {
+        pulling = false;
+        return;
+      }
+      startY = event.touches[0].clientY;
+      distance = 0;
+      pulling = true;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (event) {
+      if (!pulling || !event.touches || event.touches.length !== 1) return;
+
+      distance = event.touches[0].clientY - startY;
+      if (distance <= 0 || !atTop()) {
+        pulling = false;
+        indicator.style.transform = 'translate(-50%,-70px)';
+        indicator.style.opacity = '0';
+        return;
+      }
+
+      const shown = Math.min(distance * 0.45, 58);
+      indicator.style.transform = 'translate(-50%,' + (shown - 48) + 'px)';
+      indicator.style.opacity = String(Math.min(distance / 45, 1));
+      indicator.textContent =
+        distance >= threshold ? '↻ ปล่อยเพื่อรีเฟรช' : '↓ ดึงลงเพื่อรีเฟรช';
+    }, { passive: true });
+
+    function finishPull() {
+      if (!pulling) return;
+      const shouldRefresh = distance >= threshold && atTop();
+      pulling = false;
+
+      if (shouldRefresh) {
+        indicator.textContent = '↻ กำลังรีเฟรช...';
+        indicator.style.transform = 'translate(-50%,0)';
+        indicator.style.opacity = '1';
+        window.setTimeout(function () {
+          window.location.reload();
+        }, 120);
+        return;
+      }
+
+      indicator.style.transform = 'translate(-50%,-70px)';
+      indicator.style.opacity = '0';
+    }
+
+    document.addEventListener('touchend', finishPull, { passive: true });
+    document.addEventListener('touchcancel', finishPull, { passive: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', installPullToRefresh);
+  } else {
+    installPullToRefresh();
+  }
+
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js').catch((error) => {
