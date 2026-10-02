@@ -115,18 +115,37 @@
 
   function getFilteredProducts(){
 
-    return allProducts.filter(
-      function(product){
+    return allProducts
+      .filter(
+        function(product){
 
-        return (
-          selectedCategory === 'ทั้งหมด'
-          ||
-          normalizeCategoryValue(product.category) ===
-            normalizeCategoryValue(selectedCategory)
-        );
+          return (
+            selectedCategory === 'ทั้งหมด'
+            ||
+            normalizeCategoryValue(product.category) ===
+              normalizeCategoryValue(selectedCategory)
+          );
 
-      }
-    );
+        }
+      )
+      .sort(
+        function(a, b){
+
+          const priceA = Number(a && a.price) || 0;
+          const priceB = Number(b && b.price) || 0;
+
+          if(priceA !== priceB){
+            return priceA - priceB;
+          }
+
+          return String(a && a.name || '')
+            .localeCompare(
+              String(b && b.name || ''),
+              'th'
+            );
+
+        }
+      );
 
   }
 
