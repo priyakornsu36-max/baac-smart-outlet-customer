@@ -587,10 +587,7 @@
     }catch(e){}
 
 
-    window.open(
-      'index.html',
-      '_top'
-    );
+    window.location.replace('index.html');
   }
 
 
