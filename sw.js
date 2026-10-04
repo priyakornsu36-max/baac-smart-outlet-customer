@@ -1,4 +1,4 @@
-const CACHE_NAME = 'baac-customer-pwa-v15';
+const CACHE_NAME = 'baac-customer-pwa-v16';
 const APP_SHELL = [
   './',
   './index.html',
@@ -42,7 +42,11 @@ self.addEventListener('fetch', event => {
 
   // Network-first: ป้องกัน iPhone/Safari ค้างไฟล์ JS/CSS เวอร์ชันเก่า
   event.respondWith(
-    fetch(request)
+    fetch(
+      request.mode === 'navigate'
+        ? new Request(request, { cache: 'no-store' })
+        : request
+    )
       .then(response => {
         if (response && response.ok) {
           const copy = response.clone();
