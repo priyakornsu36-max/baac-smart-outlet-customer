@@ -2758,7 +2758,11 @@ body{
 
         try {
           if (!id) {
-            id = String(sessionStorage.getItem('baacMemberId') || '').trim();
+            id = String(
+          sessionStorage.getItem('baacMemberId') ||
+          localStorage.getItem('baacMemberId') ||
+          ''
+        ).trim();
           }
         } catch (e) {}
 
