@@ -167,10 +167,9 @@
               );
             }
 
-            window.open(
+            window.location.assign(
               'member.html?memberId=' +
-              encodeURIComponent(memberId),
-              '_top'
+              encodeURIComponent(memberId)
             );
 
           }
@@ -327,10 +326,9 @@
                 ' (' + memberId + ')',
               'success',
               function() {
-                window.open(
+                window.location.assign(
                   'member.html?memberId=' +
-                  encodeURIComponent(memberId),
-                  '_top'
+                  encodeURIComponent(memberId)
                 );
               }
             );
