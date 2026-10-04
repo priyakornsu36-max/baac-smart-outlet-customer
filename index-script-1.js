@@ -551,9 +551,3 @@
       clearCustomerLoginOnIndex();
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', resumeCustomerLogin);
-    } else {
-      resumeCustomerLogin();
-    }
-
