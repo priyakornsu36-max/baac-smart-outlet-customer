@@ -11,6 +11,7 @@
     try {
       if(id) localStorage.setItem('baacConsignorId', id);
       if(phone) localStorage.setItem('baacConsignorPhone', phone);
+      if(id) localStorage.setItem('baacActiveRole', 'consignor');
     } catch (e) {}
 
     try {
