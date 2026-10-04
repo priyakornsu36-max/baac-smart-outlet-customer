@@ -747,21 +747,6 @@
                 </div>
 
 
-                <div class="product-price">
-
-                  <span class="price-strong">
-                    ฿${formatMoney(
-                      item.price
-                    )}
-                  </span>
-
-                  / ${escapeHtml(
-                    item.unit
-                  )}
-
-                </div>
-
-
                 <div class="stats">
 
 
