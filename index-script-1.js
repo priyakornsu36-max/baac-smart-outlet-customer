@@ -144,6 +144,7 @@
             try {
 
               localStorage.setItem('baacMemberId', memberId);
+              localStorage.setItem('baacActiveRole', 'customer');
               sessionStorage.setItem(
                 'baacMemberId',
                 memberId
@@ -299,6 +300,7 @@
 
             try {
               localStorage.setItem('baacMemberId', memberId);
+              localStorage.setItem('baacActiveRole', 'customer');
               sessionStorage.setItem(
                 'baacMemberId',
                 memberId
@@ -427,6 +429,7 @@
           try {
             localStorage.setItem('baacConsignorId', consignorId);
             localStorage.setItem('baacConsignorPhone', phone);
+            localStorage.setItem('baacActiveRole', 'consignor');
           } catch (e) {}
 
           try {
@@ -527,3 +530,45 @@
 
       }
     );
+
+
+/* =========================================================
+   PERSISTENT LOGIN
+   - เปิดระบบครั้งถัดไปแล้วกลับเข้าบัญชีล่าสุดอัตโนมัติ
+   - อยู่จนกว่าผู้ใช้จะกดออกจากระบบ
+========================================================= */
+function resumeSavedLogin(){
+  try{
+    const role = String(localStorage.getItem('baacActiveRole') || '').trim();
+
+    if(role === 'customer'){
+      const id = String(localStorage.getItem('baacMemberId') || '').trim();
+      if(id){
+        try{ sessionStorage.setItem('baacMemberId', id); }catch(e){}
+        window.location.replace(
+          'member.html?memberId=' + encodeURIComponent(id)
+        );
+        return;
+      }
+    }
+
+    if(role === 'consignor'){
+      const id = String(localStorage.getItem('baacConsignorId') || '').trim();
+      if(id){
+        try{
+          sessionStorage.setItem('baacConsignorId', id);
+          const phone = String(localStorage.getItem('baacConsignorPhone') || '').trim();
+          if(phone) sessionStorage.setItem('baacConsignorPhone', phone);
+        }catch(e){}
+        window.location.replace(
+          './consignor.html?consignorId=' +
+          encodeURIComponent(id) +
+          '#consignor=' +
+          encodeURIComponent(id)
+        );
+      }
+    }
+  }catch(e){}
+}
+
+window.addEventListener('DOMContentLoaded', resumeSavedLogin);
