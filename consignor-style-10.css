@@ -40,3 +40,10 @@
 
 /* ===== CONSIGNOR HIDE PRODUCT PRICE ===== */
 .product-price{display:none !important;}
+
+
+/* ===== PRODUCT AVAILABILITY STATUS ===== */
+.status-line.status-in{color:#16854a !important;font-weight:600;}
+.status-line.status-in .status-dot{background:#34ba69 !important;box-shadow:0 3px 0 rgba(38,122,64,.22) !important;}
+.status-line.status-out{color:#c53a3a !important;font-weight:600;}
+.status-line.status-out .status-dot{background:#dc3f3f !important;box-shadow:0 3px 0 rgba(170,42,42,.20) !important;}
