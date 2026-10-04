@@ -751,7 +751,8 @@
     try {
       if (!savedMemberId) {
         savedMemberId = String(
-          sessionStorage.getItem('baacMemberId') || ''
+          sessionStorage.getItem('baacMemberId') ||
+          localStorage.getItem('baacMemberId') || ''
         ).trim();
       }
     } catch (e) {}
