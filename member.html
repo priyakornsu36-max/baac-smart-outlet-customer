@@ -2763,11 +2763,8 @@ body{
         } catch (e) {}
 
         try {
-          if (!id) {
-            id = String(localStorage.getItem('baacMemberId') || '').trim();
-          }
           if (id) {
-            localStorage.setItem('baacMemberId', id);
+            localStorage.removeItem('baacMemberId');
             sessionStorage.setItem('baacMemberId', id);
           }
         } catch (e) {}
@@ -2834,10 +2831,7 @@ body{
             'ไม่พบข้อมูลสมาชิก กรุณาเข้าสู่ระบบใหม่'
           );
 
-          window.open(
-            'index.html',
-            '_top'
-          );
+          window.location.replace('index.html');
 
           return;
         }
@@ -3497,10 +3491,9 @@ body{
 
       function openProducts(){
 
-        window.open(
+        window.location.assign(
           'products.html?memberId=' +
-          encodeURIComponent(memberId),
-          '_top'
+          encodeURIComponent(memberId)
         );
 
       }
@@ -3520,10 +3513,7 @@ body{
 
         memberId = '';
 
-        window.open(
-          'index.html',
-          '_top'
-        );
+        window.location.replace('index.html');
 
       }
 
