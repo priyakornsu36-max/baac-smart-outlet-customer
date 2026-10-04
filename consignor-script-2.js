@@ -578,6 +578,7 @@
 
       localStorage.removeItem('baacConsignorId');
       localStorage.removeItem('baacConsignorPhone');
+      localStorage.removeItem('baacActiveRole');
 
       try{
         sessionStorage.removeItem('baacConsignorId');
