@@ -798,11 +798,11 @@
                 </div>
 
 
-                <div class="status-line">
+                <div class="status-line ${stock <= 0 ? 'status-out' : 'status-in'}">
 
                   <span class="status-dot"></span>
 
-                  สถานะสินค้า
+                  ${stock <= 0 ? 'สินค้าหมด' : 'มีสินค้า'}
 
                 </div>
 
