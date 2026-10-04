@@ -2768,7 +2768,8 @@ body{
 
         try {
           if (id) {
-            localStorage.removeItem('baacMemberId');
+            localStorage.setItem('baacMemberId', id);
+            localStorage.setItem('baacActiveRole', 'customer');
             sessionStorage.setItem('baacMemberId', id);
           }
         } catch (e) {}
@@ -3512,6 +3513,7 @@ body{
         try{
           localStorage.removeItem('baacMemberId');
           localStorage.removeItem('baacMemberSnapshot');
+          localStorage.removeItem('baacActiveRole');
           sessionStorage.removeItem('baacMemberId');
         }catch(e){}
 
