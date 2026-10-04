@@ -143,10 +143,7 @@
 
             try {
 
-              localStorage.setItem(
-                'baacMemberId',
-                memberId
-              );
+              localStorage.removeItem('baacMemberId');
               sessionStorage.setItem(
                 'baacMemberId',
                 memberId
@@ -302,10 +299,7 @@
             }
 
             try {
-              localStorage.setItem(
-                'baacMemberId',
-                memberId
-              );
+              localStorage.removeItem('baacMemberId');
               sessionStorage.setItem(
                 'baacMemberId',
                 memberId
@@ -539,34 +533,22 @@
   
 
     /* =========================
-       CUSTOMER LOGIN PERSISTENCE
-       เปิดแอปครั้งถัดไปแล้วเข้าหน้าสมาชิกเดิมอัตโนมัติ
-       จนกว่าผู้ใช้จะกด "ออกจากระบบ"
+       CUSTOMER LOGIN
+       ไม่จำการเข้าสู่ระบบข้ามครั้ง
+       เมื่อกลับมาหน้า index ต้อง Login ใหม่
        ========================= */
-    function resumeCustomerLogin() {
-      var memberId = '';
-
+    function clearCustomerLoginOnIndex() {
       try {
-        memberId = String(
-          localStorage.getItem('baacMemberId') ||
-          sessionStorage.getItem('baacMemberId') ||
-          ''
-        ).trim();
-
-        if (memberId) {
-          localStorage.setItem('baacMemberId', memberId);
-          sessionStorage.setItem('baacMemberId', memberId);
-        }
+        localStorage.removeItem('baacMemberId');
+        localStorage.removeItem('baacMemberSnapshot');
+        sessionStorage.removeItem('baacMemberId');
       } catch (e) {}
+    }
 
-      if (!memberId) {
-        return;
-      }
-
-      window.location.replace(
-        'member.html?memberId=' +
-        encodeURIComponent(memberId)
-      );
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', clearCustomerLoginOnIndex);
+    } else {
+      clearCustomerLoginOnIndex();
     }
 
     if (document.readyState === 'loading') {
