@@ -143,7 +143,7 @@
 
             try {
 
-              localStorage.removeItem('baacMemberId');
+              localStorage.setItem('baacMemberId', memberId);
               sessionStorage.setItem(
                 'baacMemberId',
                 memberId
@@ -298,7 +298,7 @@
             }
 
             try {
-              localStorage.removeItem('baacMemberId');
+              localStorage.setItem('baacMemberId', memberId);
               sessionStorage.setItem(
                 'baacMemberId',
                 memberId
@@ -527,25 +527,3 @@
 
       }
     );
-
-  
-
-    /* =========================
-       CUSTOMER LOGIN
-       ไม่จำการเข้าสู่ระบบข้ามครั้ง
-       เมื่อกลับมาหน้า index ต้อง Login ใหม่
-       ========================= */
-    function clearCustomerLoginOnIndex() {
-      try {
-        localStorage.removeItem('baacMemberId');
-        localStorage.removeItem('baacMemberSnapshot');
-        sessionStorage.removeItem('baacMemberId');
-      } catch (e) {}
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', clearCustomerLoginOnIndex);
-    } else {
-      clearCustomerLoginOnIndex();
-    }
-
