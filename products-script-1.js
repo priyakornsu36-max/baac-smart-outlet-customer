@@ -744,8 +744,16 @@
 
     try {
       savedMemberId = String(
-        localStorage.getItem('baacMemberId') || ''
+        new URLSearchParams(window.location.search).get('memberId') || ''
       ).trim();
+    } catch (e) {}
+
+    try {
+      if (!savedMemberId) {
+        savedMemberId = String(
+          sessionStorage.getItem('baacMemberId') || ''
+        ).trim();
+      }
     } catch (e) {}
 
     const memberUrl =
@@ -756,10 +764,7 @@
           : ''
       );
 
-    window.open(
-      memberUrl,
-      '_top'
-    );
+    window.location.assign(memberUrl);
 
   }
 
