@@ -37,3 +37,6 @@
     touch-action:pan-y !important;
   }
 }
+
+/* ===== CONSIGNOR HIDE PRODUCT PRICE ===== */
+.product-price{display:none !important;}
