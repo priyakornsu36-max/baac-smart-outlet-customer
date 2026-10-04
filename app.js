@@ -412,11 +412,23 @@
     installPullToRefresh();
   }
 
+  // Safari/iPad can restore a PWA page from the back-forward cache without
+  // firing DOMContentLoaded again. Reload that restored document automatically
+  // so every screen initializes its data instead of appearing frozen.
+  window.addEventListener('pageshow', (event) => {
+    if (event && event.persisted) {
+      window.location.reload();
+    }
+  });
+
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js').catch((error) => {
-        console.warn('Service worker registration failed', error);
-      });
+      navigator.serviceWorker
+        .register('./sw.js', { updateViaCache: 'none' })
+        .then((registration) => registration.update().catch(() => null))
+        .catch((error) => {
+          console.warn('Service worker registration failed', error);
+        });
     });
   }
 })();
