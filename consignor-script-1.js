@@ -802,10 +802,7 @@
 
                   <span class="status-dot"></span>
 
-                  ${escapeHtml(
-                    item.status ||
-                    'มีสินค้า'
-                  )}
+                  สถานะสินค้า
 
                 </div>
 
