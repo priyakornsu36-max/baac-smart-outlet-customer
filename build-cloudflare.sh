@@ -8,6 +8,7 @@ find . -maxdepth 1 -type f \( \
   -name '*.jpg' -o -name '*.jpeg' -o -name '*.webp' -o -name '*.ico' \
 \) -exec cp {} dist/ \;
 cp _headers dist/_headers
+cp _redirects dist/_redirects
 test -f dist/index.html
 test -f dist/install.html
 test -f dist/manifest.webmanifest
