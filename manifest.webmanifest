@@ -1,7 +1,7 @@
 {
-  "name": "BAAC SMART OUTLET",
+  "name": "BAAC OUTLET",
   "short_name": "BAAC OUTLET",
-  "description": "BAAC SMART OUTLET สำหรับลูกค้าและผู้ฝากขาย",
+  "description": "BAAC OUTLET สำหรับลูกค้าและผู้ฝากขาย",
   "lang": "th",
   "start_url": "./index.html",
   "scope": "./",
