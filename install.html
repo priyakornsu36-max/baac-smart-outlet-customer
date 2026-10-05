@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0d5632">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="BAAC OUTLET">
-  <meta name="description" content="วิธีเพิ่ม BAAC OUTLET ไปยังหน้าจอหลักบน iPhone, iPad และ Android">
+  <meta name="description" content="วิธีติดตั้ง BAAC OUTLET บน iOS และ Android">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="./icon-192.png">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
@@ -74,8 +74,8 @@
     <h1>BAAC OUTLET</h1>
     <p class="sub">แอปสำหรับลูกค้าและผู้ฝากขาย</p>
     <p id="browserWarning" class="warning" hidden>กรุณาเปิดหน้านี้ด้วย Safari บน iPhone หรือ Chrome บน Android เพื่อดำเนินการติดตั้ง</p>
-    <section id="androidSection" hidden>
-      <button class="primary" id="installButton" type="button">ติดตั้งแอปฟรี</button>
+    <section id="androidSection">
+      <button class="primary" id="installButton" type="button" hidden>ติดตั้งแอปฟรี</button>
       <div class="help" id="androidHelp">
         <h2>วิธีติดตั้งบน Android</h2>
         <div class="step"><span class="num">1</span><span>เปิดหน้านี้ด้วย Google Chrome</span></div>
@@ -83,9 +83,9 @@
         <div class="step"><span class="num">3</span><span>กดไอคอน BAAC OUTLET บนหน้าจอมือถือเพื่อเข้าแอป</span></div>
       </div>
     </section>
-    <section id="iosSection" hidden>
+    <section id="iosSection">
       <div class="help">
-        <h2>ติดตั้งบน iPhone / iPad</h2>
+        <h2>วิธีติดตั้ง iOS (iPhone / iPad)</h2>
         <div class="step"><span class="num">1</span><span>เปิดหน้านี้ใน Safari (หากเปิดจาก LINE ให้เลือก “เปิดใน Safari”)</span></div>
         <div class="step"><span class="num">2</span><span>แตะปุ่มแชร์ <strong>□↑</strong> ใน Safari แล้วเลือก <strong>“เพิ่มไปยังหน้าจอโฮม”</strong></span></div>
         <div class="step"><span class="num">3</span><span>แตะ <strong>“เพิ่ม”</strong> แล้วกดไอคอน BAAC OUTLET บนหน้าจอมือถือ</span></div>
@@ -108,13 +108,11 @@
     var installed=document.getElementById('installedSection');
     var btn=document.getElementById('installButton');
     if(standalone){window.location.replace('./index.html');return;}
-    else if(ios){iphone.hidden=false}
-    else{android.hidden=false}
     if(embedded&&!standalone){document.getElementById('browserWarning').hidden=false}
     window.addEventListener('beforeinstallprompt',function(e){
       e.preventDefault();
       deferredPrompt=e;
-      if(!standalone&&!ios){android.hidden=false;btn.hidden=false}
+      if(!standalone&&!ios){btn.hidden=false}
     });
     btn.addEventListener('click',async function(){
       if(!deferredPrompt){
