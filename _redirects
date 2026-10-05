@@ -1,1 +1,2 @@
-/ /install.html 302
+# Root stays on index.html so an installed app opens the login page.
+# Installation QR points directly to /install.html.
