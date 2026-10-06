@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -40,13 +40,22 @@ jobs:
           mkdir -p android-app/app/src/main/res/drawable
           cp icon-192.png android-app/app/src/main/res/drawable/baac_icon.png
 
-      - name: Build release APK
+      - name: Build Android APK
         working-directory: android-app
-        run: gradle :app:assembleRelease --no-daemon
+        run: gradle :app:assembleDebug --no-daemon
+
+      - name: Publish Android APK to site
+        run: |
+          cp android-app/app/build/outputs/apk/debug/app-debug.apk BAAC-OUTLET-Android.apk
+          git config user.name "baac-smart-outlet"
+          git config user.email "priyakorn.su36@gmail.com"
+          git add -f BAAC-OUTLET-Android.apk
+          git commit -m "Publish BAAC OUTLET Android app" || exit 0
+          git push
 
       - uses: actions/upload-artifact@v4
         with:
-          name: BAAC-OUTLET-android-unsigned
-          path: android-app/app/build/outputs/apk/release/app-release-unsigned.apk
+          name: BAAC-OUTLET-Android
+          path: BAAC-OUTLET-Android.apk
           if-no-files-found: error
-          retention-days: 7
+          retention-days: 30
