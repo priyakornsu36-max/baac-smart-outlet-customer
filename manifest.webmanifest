@@ -1,7 +1,7 @@
 {
-  "name": "BAAC OUTLET",
-  "short_name": "BAAC OUTLET",
-  "description": "BAAC OUTLET สำหรับลูกค้าและผู้ฝากขาย",
+  "name": "BAAC SMART OUTLET",
+  "short_name": "BAAC SMART OUTLET",
+  "description": "BAAC SMART OUTLET สำหรับลูกค้าและผู้ฝากขาย",
   "lang": "th",
   "start_url": "./index.html",
   "scope": "./",
@@ -11,13 +11,7 @@
   "theme_color": "#0d5632",
   "icons": [
     {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon.svg",
+      "src": "icon.svg?v=24",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
