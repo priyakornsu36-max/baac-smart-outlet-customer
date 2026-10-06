@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "th.co.baac.smartoutlet",
+      "sha256_cert_fingerprints": [
+        "FA:6E:BF:D8:93:0A:B5:77:BE:4C:91:F5:15:DF:8F:95:23:50:C5:26:F5:7A:BF:2D:A3:06:FD:86:82:0F:3F:52"
+      ]
+    }
+  }
+]
