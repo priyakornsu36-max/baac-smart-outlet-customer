@@ -1,4 +1,4 @@
-const CACHE_NAME = 'baac-customer-pwa-v28';
+const CACHE_NAME = 'baac-customer-pwa-v29';
 const APP_SHELL = [
   './',
   './index.html',
@@ -11,6 +11,7 @@ const APP_SHELL = [
   './customer-font.css',
   './icon.svg',
   './icon-192.png',
+  './icon-512.svg',
   './tier-general-art.png',
   './tier-silver-art.png',
   './tier-gold-art.png'
