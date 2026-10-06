@@ -75,12 +75,13 @@
     <p class="sub">แอปสำหรับลูกค้าและผู้ฝากขาย</p>
     <p id="browserWarning" class="warning" hidden>กรุณาเปิดหน้านี้ด้วย Safari บน iPhone หรือ Chrome บน Android เพื่อดำเนินการติดตั้ง</p>
     <section id="androidSection">
+      <a class="primary" id="androidApkButton" href="./BAAC-OUTLET-Android.apk" hidden style="text-decoration:none">ติดตั้ง BAAC OUTLET บน Android</a>
       <button class="primary" id="installButton" type="button" hidden>ติดตั้งแอปฟรี</button>
       <div class="help" id="androidHelp">
         <h2>วิธีติดตั้งบน Android</h2>
-        <div class="step"><span class="num">1</span><span>เปิดหน้านี้ด้วยเบราว์เซอร์บน Android</span></div>
-        <div class="step"><span class="num">2</span><span>กดปุ่ม “ติดตั้งแอปฟรี” หรือเมนู ⋮ แล้วเลือก “ติดตั้งแอป” / “เพิ่มไปยังหน้าจอหลัก”</span></div>
-        <div class="step"><span class="num">3</span><span>กดไอคอน BAAC OUTLET บนหน้าจอมือถือเพื่อเข้าแอป</span></div>
+        <div class="step"><span class="num">1</span><span>กดปุ่ม “ติดตั้ง BAAC OUTLET บน Android” ด้านบน</span></div>
+        <div class="step"><span class="num">2</span><span>เมื่อดาวน์โหลดเสร็จ ให้เปิดไฟล์ BAAC-OUTLET-Android.apk แล้วกด “ติดตั้ง”</span></div>
+        <div class="step"><span class="num">3</span><span>กดไอคอน BAAC OUTLET เพื่อเข้าแอป ระบบจะเปิดหน้าเข้าสู่ระบบของลูกค้าโดยตรง</span></div>
       </div>
     </section>
     <section id="iosSection">
@@ -100,6 +101,7 @@
     'use strict';
     var ua=navigator.userAgent||'';
     var ios=/iPad|iPhone|iPod/i.test(ua)||(/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1);
+    var androidOS=/Android/i.test(ua);
     var standalone=window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
     var embedded=/Line\/|FBAN|FBAV|Instagram|MicroMessenger/i.test(ua);
         var deferredPrompt=null;
@@ -107,6 +109,8 @@
     var iphone=document.getElementById('iosSection');
     var installed=document.getElementById('installedSection');
     var btn=document.getElementById('installButton');
+    var apkBtn=document.getElementById('androidApkButton');
+    if(androidOS&&!ios){apkBtn.hidden=false;btn.hidden=true}
     if(standalone){window.location.replace('./index.html');return;}
     if(embedded&&!standalone){
       var warning=document.getElementById('browserWarning');
@@ -115,7 +119,7 @@
     window.addEventListener('beforeinstallprompt',function(e){
       e.preventDefault();
       deferredPrompt=e;
-      if(!standalone&&!ios){btn.hidden=false}
+      if(!standalone&&!ios&&!androidOS){btn.hidden=false}
     });
     btn.addEventListener('click',async function(){
       if(!deferredPrompt){
