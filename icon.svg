@@ -1,9 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0d5632"/><stop offset="1" stop-color="#16854a"/></linearGradient></defs>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b5731"/><stop offset="1" stop-color="#12824a"/></linearGradient></defs>
 <rect width="512" height="512" rx="112" fill="url(#g)"/>
-<path d="M92 214h328v208H92z" fill="#fffdf7"/>
-<path d="M72 204h368l-38-104H110z" fill="#f1c35a"/>
-<path d="M105 204v62m75-62v62m76-62v62m76-62v62m75-62v62" stroke="#0d5632" stroke-width="24"/>
-<circle cx="256" cy="326" r="54" fill="#16854a"/>
-<path d="M176 414c18-70 142-70 160 0" fill="#16854a"/>
+<rect x="92" y="206" width="328" height="202" rx="32" fill="#fff"/>
+<path d="M72 205h368l-42-89H114z" fill="#fff"/>
+<path d="M116 170v66m68-66v66m68-66v66m68-66v66m68-66v66" stroke="#0f683a" stroke-width="28" stroke-linecap="round"/>
+<path d="M184 334c18-60 126-72 154-8-20 56-128 68-154 8z" fill="#0f683a"/>
+<path d="M218 351c29-13 55-31 82-62" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round"/>
+<path d="M274 304c14-27 32-42 55-50-3 29-15 49-39 62" fill="#fff"/>
+<rect x="154" y="430" width="204" height="16" rx="8" fill="#fff"/>
 </svg>
