@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0d5632">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="BAAC OUTLET">
-  <meta name="description" content="วิธีติดตั้ง BAAC OUTLET บน iOS และ Android">
+  <meta name="apple-mobile-web-app-title" content="BAAC SMART OUTLET">
+  <meta name="description" content="วิธีติดตั้ง BAAC SMART OUTLET บน iOS และ Android">
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="apple-touch-icon" href="./icon.svg?v=24">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <title>ติดตั้ง BAAC OUTLET</title>
+  <title>ติดตั้ง BAAC SMART OUTLET</title>
   <style>
     *{box-sizing:border-box}
     html{-webkit-text-size-adjust:100%;min-height:100%;background:#f3f7ef}
@@ -70,8 +70,8 @@
 </head>
 <body>
   <main class="card">
-    <img class="icon" src="./icon-192.png" alt="ไอคอน BAAC OUTLET" width="96" height="96">
-    <h1>BAAC OUTLET</h1>
+    <img class="icon" src="./icon.svg?v=24" alt="ไอคอน BAAC SMART OUTLET" width="96" height="96">
+    <h1>BAAC SMART OUTLET</h1>
     <p class="sub">แอปสำหรับลูกค้าและผู้ฝากขาย</p>
     <p id="browserWarning" class="warning" hidden>กรุณาเปิดหน้านี้ด้วย Safari บน iPhone หรือ Chrome บน Android เพื่อดำเนินการติดตั้ง</p>
     <section id="androidSection">
@@ -80,7 +80,7 @@
         <h2>วิธีติดตั้งบน Android</h2>
         <div class="step"><span class="num">1</span><span>เปิดหน้านี้ด้วย Google Chrome</span></div>
         <div class="step"><span class="num">2</span><span>กดปุ่ม “ติดตั้งแอปฟรี” หรือเมนู ⋮ แล้วเลือก “ติดตั้งแอป” / “เพิ่มไปยังหน้าจอหลัก”</span></div>
-        <div class="step"><span class="num">3</span><span>กดไอคอน BAAC OUTLET บนหน้าจอมือถือเพื่อเข้าแอป</span></div>
+        <div class="step"><span class="num">3</span><span>กดไอคอน BAAC SMART OUTLET บนหน้าจอมือถือเพื่อเข้าแอป</span></div>
       </div>
     </section>
     <section id="iosSection">
@@ -88,11 +88,11 @@
         <h2>วิธีติดตั้ง iOS (iPhone / iPad)</h2>
         <div class="step"><span class="num">1</span><span>เปิดหน้านี้ใน Safari (หากเปิดจาก LINE ให้เลือก “เปิดใน Safari”)</span></div>
         <div class="step"><span class="num">2</span><span>แตะปุ่มแชร์ <strong>□↑</strong> ใน Safari แล้วเลือก <strong>“เพิ่มไปยังหน้าจอโฮม”</strong></span></div>
-        <div class="step"><span class="num">3</span><span>แตะ <strong>“เพิ่ม”</strong> แล้วกดไอคอน BAAC OUTLET บนหน้าจอมือถือ</span></div>
+        <div class="step"><span class="num">3</span><span>แตะ <strong>“เพิ่ม”</strong> แล้วกดไอคอน BAAC SMART OUTLET บนหน้าจอมือถือ</span></div>
       </div>
     </section>
     <section id="installedSection" hidden>
-      <div class="help"><h2>พร้อมใช้งานแล้ว</h2><p style="font-size:14px;margin:0">เปิดแอปจากไอคอน BAAC OUTLET บนหน้าจอมือถือได้เลย</p></div>
+      <div class="help"><h2>พร้อมใช้งานแล้ว</h2><p style="font-size:14px;margin:0">เปิดแอปจากไอคอน BAAC SMART OUTLET บนหน้าจอมือถือได้เลย</p></div>
     </section>
   </main>
   <script>
@@ -126,7 +126,7 @@
       android.hidden=true;iphone.hidden=true;installed.hidden=false;
     });
     if('serviceWorker' in navigator&&location.protocol==='https:'){
-      window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(e){console.warn('SW',e)})});
+      window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js?v=24').catch(function(e){console.warn('SW',e)})});
     }
   })();
   </script>
