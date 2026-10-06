@@ -6,7 +6,7 @@ mkdir -p dist
 find . -maxdepth 1 -type f \( \
   -name '*.html' -o -name '*.css' -o -name '*.js' -o \
   -name '*.webmanifest' -o -name '*.svg' -o -name '*.png' -o \
-  -name '*.jpg' -o -name '*.jpeg' -o -name '*.webp' -o -name '*.ico' \
+  -name '*.jpg' -o -name '*.jpeg' -o -name '*.webp' -o -name '*.ico' -o -name '*.apk' \
 \) -exec cp {} dist/ \;
 cp _headers dist/_headers
 cp _redirects dist/_redirects
