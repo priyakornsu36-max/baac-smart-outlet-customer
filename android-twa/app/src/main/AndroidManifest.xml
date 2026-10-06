@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:allowBackup="false"
+        android:label="BAAC OUTLET"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="false">
+        <activity
+            android:name="com.google.androidbrowserhelper.trusted.LauncherActivity"
+            android:exported="true">
+            <meta-data android:name="android.support.customtabs.trusted.DEFAULT_URL"
+                android:value="https://baac-smart-outlet-app.pages.dev/index.html" />
+            <meta-data android:name="android.support.customtabs.trusted.STATUS_BAR_COLOR"
+                android:resource="@color/baac_green" />
+            <meta-data android:name="android.support.customtabs.trusted.NAVIGATION_BAR_COLOR"
+                android:resource="@color/baac_green" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
