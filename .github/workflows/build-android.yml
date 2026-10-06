@@ -50,7 +50,8 @@ jobs:
           git config user.name "baac-smart-outlet"
           git config user.email "priyakorn.su36@gmail.com"
           git add -f BAAC-OUTLET-Android.apk
-          git commit -m "Publish BAAC OUTLET Android app" || exit 0
+          git diff --cached --quiet || git commit -m "Publish BAAC OUTLET Android app"
+          git pull --rebase origin main
           git push
 
       - uses: actions/upload-artifact@v4
