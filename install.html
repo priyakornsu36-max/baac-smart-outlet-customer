@@ -122,7 +122,10 @@
           'S.browser_fallback_url='+encodeURIComponent(installUrl)+';end';
         btn.hidden=true;
       }else{
+        // Never leave Android with a dead install button.
+        // Until Chrome exposes the native PWA prompt, this button opens BAAC OUTLET immediately.
         btn.hidden=false;
+        btn.textContent='เปิด BAAC OUTLET';
       }
     }
 
@@ -137,15 +140,30 @@
     window.addEventListener('beforeinstallprompt',function(e){
       e.preventDefault();
       deferredPrompt=e;
-      if(!standalone&&!ios&&!embedded){btn.hidden=false}
+      if(!standalone&&!ios&&!embedded){
+        btn.hidden=false;
+        btn.textContent='ติดตั้ง BAAC OUTLET';
+      }
     });
     btn.addEventListener('click',async function(){
+      // Android fallback: if Chrome does not provide the install prompt,
+      // open the customer app instead of leaving the button unresponsive.
+      if(androidOS&&!ios&&!deferredPrompt){
+        window.location.href='./index.html';
+        return;
+      }
       if(!deferredPrompt){
         document.getElementById('androidHelp').scrollIntoView({behavior:'smooth',block:'center'});
         return;
       }
       var prompt=deferredPrompt;deferredPrompt=null;
-      try{await prompt.prompt();await prompt.userChoice}catch(e){console.warn('Install prompt unavailable',e)}
+      try{
+        await prompt.prompt();
+        await prompt.userChoice;
+      }catch(e){
+        console.warn('Install prompt unavailable',e);
+        if(androidOS&&!ios){window.location.href='./index.html'}
+      }
     });
     window.addEventListener('appinstalled',function(){
       android.hidden=true;iphone.hidden=true;installed.hidden=false;
