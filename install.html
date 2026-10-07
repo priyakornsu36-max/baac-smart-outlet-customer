@@ -75,13 +75,13 @@
     <p class="sub">แอปสำหรับลูกค้าและผู้ฝากขาย</p>
     <p id="browserWarning" class="warning" hidden>กรุณาเปิดหน้านี้ด้วย Safari บน iPhone หรือ Chrome บน Android เพื่อดำเนินการติดตั้ง</p>
     <section id="androidSection">
-      <a class="primary" id="androidApkButton" href="./BAAC-OUTLET-Android.apk" hidden style="text-decoration:none">ติดตั้ง BAAC OUTLET บน Android</a>
-      <button class="primary" id="installButton" type="button" hidden>ติดตั้งแอปฟรี</button>
+      <a class="primary" id="androidChromeButton" href="#" hidden style="text-decoration:none">เปิดด้วย Chrome เพื่อติดตั้ง BAAC OUTLET</a>
+      <button class="primary" id="installButton" type="button" hidden>ติดตั้ง BAAC OUTLET</button>
       <div class="help" id="androidHelp">
         <h2>วิธีติดตั้งบน Android</h2>
-        <div class="step"><span class="num">1</span><span>กดปุ่ม “ติดตั้ง BAAC OUTLET บน Android” ด้านบน</span></div>
-        <div class="step"><span class="num">2</span><span>เมื่อดาวน์โหลดเสร็จ ให้เปิดไฟล์ BAAC-OUTLET-Android.apk แล้วกด “ติดตั้ง”</span></div>
-        <div class="step"><span class="num">3</span><span>กดไอคอน BAAC OUTLET เพื่อเข้าแอป ระบบจะเปิดหน้าเข้าสู่ระบบของลูกค้าโดยตรง</span></div>
+        <div class="step"><span class="num">1</span><span>หากเปิดจาก LINE ให้กด “เปิดด้วย Chrome เพื่อติดตั้ง BAAC OUTLET”</span></div>
+        <div class="step"><span class="num">2</span><span>ใน Chrome กด “ติดตั้ง BAAC OUTLET” หากไม่พบปุ่มติดตั้ง ให้แตะเมนู ⋮ แล้วเลือก “เพิ่มลงในหน้าจอหลัก” หรือ “ติดตั้งแอป”</span></div>
+        <div class="step"><span class="num">3</span><span>กดไอคอน BAAC OUTLET บนหน้าจอมือถือเพื่อเข้าใช้งานได้ทันที</span></div>
       </div>
     </section>
     <section id="iosSection">
@@ -109,34 +109,35 @@
     var iphone=document.getElementById('iosSection');
     var installed=document.getElementById('installedSection');
     var btn=document.getElementById('installButton');
-    var apkBtn=document.getElementById('androidApkButton');
-    if(androidOS&&!ios){
-      apkBtn.hidden=false;
-      btn.hidden=true;
+    var chromeBtn=document.getElementById('androidChromeButton');
 
-      // LINE/Facebook/Instagram in-app browsers block APK downloads.
-      // On Android, send the install tap to Chrome so the APK can download normally.
+    // Android only: use the PWA install flow. No APK download is required.
+    if(androidOS&&!ios){
       if(embedded){
-        var apkUrl=new URL('./BAAC-OUTLET-Android.apk',window.location.href).href;
-        var apkUri=apkUrl.replace(/^https:\/\//i,'');
-        apkBtn.textContent='เปิด Chrome เพื่อติดตั้ง BAAC OUTLET';
-        apkBtn.href='intent://'+apkUri+
+        var installUrl=window.location.href.split('#')[0];
+        var installUri=installUrl.replace(/^https:\/\//i,'');
+        chromeBtn.hidden=false;
+        chromeBtn.href='intent://'+installUri+
           '#Intent;scheme=https;package=com.android.chrome;'+
-          'S.browser_fallback_url='+encodeURIComponent(apkUrl)+';end';
+          'S.browser_fallback_url='+encodeURIComponent(installUrl)+';end';
+        btn.hidden=true;
+      }else{
+        btn.hidden=false;
       }
     }
+
     if(standalone){window.location.replace('./index.html');return;}
     if(embedded&&!standalone){
       var warning=document.getElementById('browserWarning');
       warning.hidden=false;
       if(androidOS&&!ios){
-        warning.textContent='ขณะนี้เปิดผ่าน LINE ซึ่งไม่อนุญาตให้ดาวน์โหลดไฟล์ติดตั้ง กดปุ่มด้านล่างเพื่อเปิด Chrome และติดตั้ง BAAC OUTLET';
+        warning.textContent='กดปุ่มด้านล่างเพื่อเปิดหน้านี้ด้วย Chrome แล้วติดตั้ง BAAC OUTLET โดยไม่ต้องดาวน์โหลดไฟล์ APK';
       }
     }
     window.addEventListener('beforeinstallprompt',function(e){
       e.preventDefault();
       deferredPrompt=e;
-      if(!standalone&&!ios&&!androidOS){btn.hidden=false}
+      if(!standalone&&!ios&&!embedded){btn.hidden=false}
     });
     btn.addEventListener('click',async function(){
       if(!deferredPrompt){
