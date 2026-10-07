@@ -110,11 +110,28 @@
     var installed=document.getElementById('installedSection');
     var btn=document.getElementById('installButton');
     var apkBtn=document.getElementById('androidApkButton');
-    if(androidOS&&!ios){apkBtn.hidden=false;btn.hidden=true}
+    if(androidOS&&!ios){
+      apkBtn.hidden=false;
+      btn.hidden=true;
+
+      // LINE/Facebook/Instagram in-app browsers block APK downloads.
+      // On Android, send the install tap to Chrome so the APK can download normally.
+      if(embedded){
+        var apkUrl=new URL('./BAAC-OUTLET-Android.apk',window.location.href).href;
+        var apkUri=apkUrl.replace(/^https:\/\//i,'');
+        apkBtn.textContent='เปิด Chrome เพื่อติดตั้ง BAAC OUTLET';
+        apkBtn.href='intent://'+apkUri+
+          '#Intent;scheme=https;package=com.android.chrome;'+
+          'S.browser_fallback_url='+encodeURIComponent(apkUrl)+';end';
+      }
+    }
     if(standalone){window.location.replace('./index.html');return;}
     if(embedded&&!standalone){
       var warning=document.getElementById('browserWarning');
       warning.hidden=false;
+      if(androidOS&&!ios){
+        warning.textContent='ขณะนี้เปิดผ่าน LINE ซึ่งไม่อนุญาตให้ดาวน์โหลดไฟล์ติดตั้ง กดปุ่มด้านล่างเพื่อเปิด Chrome และติดตั้ง BAAC OUTLET';
+      }
     }
     window.addEventListener('beforeinstallprompt',function(e){
       e.preventDefault();
